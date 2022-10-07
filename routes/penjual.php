@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Penjual\PenjualController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,12 +15,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return redirect()->route('home');
+Route::group(['middleware' => ['auth:penjual']], function () {
+    Route::get('/penjual',[PenjualController::class,'index'])->name('penjual.index');
 });
-
-Route::get('home', [WebController::class,'home'])->name('home');
+Route::prefix('penjual/')->name('penjual.')->group(function(){
+    Route::resource('/produk', ProdukController::class);
+});
 Route::prefix('auth/')->name('auth.')->group(function(){
     Route::get('index', [AuthController::class,'index'])->name('index');
     Route::get('forgot', [AuthController::class,'forgot'])->name('forgot');

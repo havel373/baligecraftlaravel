@@ -35,7 +35,7 @@
                             </li>
                             <li class="nav-item submenu dropdown active">
                                 <a href="#" class="nav-link dropdown user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                    Hi, {{Auth::user()->username}}
+                                    Hi, {{Auth::user() ? Auth::user()->username : ''}}
                                     <span class="lnr lnr-chevron-down"></span>
                                 </a>
                                 <ul class="dropdown-menu menu">

@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\User\AuthController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\User\ProdukController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,19 +17,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->route('auth.admin.index');
-});
-
-// Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth:admin']], function () {
     Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
-// });
-
-Route::get('home', [WebController::class,'home'])->name('home');
+});
+Route::prefix('admin/')->name('admin.')->group(function(){
+    Route::resource('/produk', ProdukController::class);
+});
+Route::get('login', [AuthController::class,'adminIndex'])->name('login');
 Route::prefix('admin/auth/')->name('admin.auth.')->group(function(){
-    Route::get('index', [AuthController::class,'index'])->name('index');
-    Route::get('forgot', [AuthController::class,'forgot'])->name('forgot');
-    Route::post('login', [AuthController::class,'login'])->name('login');
-    Route::get('logout', [AuthController::class,'logout'])->name('logout');
+    
+    Route::post('login', [AuthController::class,'adminLogin'])->name('login');
+    Route::get('logout', [AuthController::class,'adminLogout'])->name('logout');
 });
     

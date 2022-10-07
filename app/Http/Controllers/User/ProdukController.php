@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
@@ -14,9 +16,13 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if($request->ajax() ){
+            $produk = Produk::paginate(10);
+            return view('pages.admin.produk.list', compact('produk'));
+        }
+        return view('pages.admin.produk.main');
     }
 
     /**
@@ -26,7 +32,8 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        //
+        $category = Kategori::get();
+        return view('pages.admin.produk.input', ['produk' => new Produk, 'category' => $category]);
     }
 
     /**
@@ -37,7 +44,7 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -60,7 +67,8 @@ class ProdukController extends Controller
      */
     public function edit(Produk $produk)
     {
-        //
+        $category = Kategori::get();
+        return view('pages.admin.produk.input', ['produk' => $produk, 'category' => $category]);
     }
 
     /**
@@ -83,6 +91,11 @@ class ProdukController extends Controller
      */
     public function destroy(Produk $produk)
     {
-        //
+        $produk->delete();
+        Storage::delete($produk->gambar);
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Produk Berhasiil dihapus',
+        ]);
     }
 }

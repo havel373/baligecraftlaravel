@@ -2,10 +2,14 @@
 <html lang="en">
 @include('theme.userDashboard.head')
 <body>
-    @include('theme.userDashboard.header')
+    @if(!request()->is('login'))
+        @include('theme.userDashboard.header')
+    @endif
     {{$slot}}
 @include('theme.userDashboard.js')
-@include('theme.userDashboard.footer')
+@if(!request()->is('login'))
+    @include('theme.userDashboard.footer')
+@endif
 @yield('custom_js')
 </body>
 </html>
