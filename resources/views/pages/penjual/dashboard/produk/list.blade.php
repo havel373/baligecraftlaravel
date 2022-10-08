@@ -16,19 +16,36 @@
                 <td style="padding: 30px 50px;">{{ $product->nama }}</td>
                 <td style="padding: 30px 50px;"><img src="{{asset('assets/upload/image/' . $product->gambar)}}" style="width:45%;" /></td>
                 <td style="padding: 30px 50px;">{{$product->category->kategori_nama }}</td>
-                <td style="padding: 30px 50px;">
-                    @if ($product->produk_status == 1)
+                <td>
+                    @if ($product->status == 1) 
                         <span class="badge badge-success">Published</span>
                     @else
                         <span class="badge badge-danger">Unpublished</span>
                     @endif
                 </td>
-                <td style="padding: 30px 20px;">
-                    <a class="btn btn-primary" href="javascript:;" onclick="load_input('{{route('penjual.produk.edit',$product->id)}}');" style="border-color: #e99c2e;">
-                        <i class="fa fa-edit"></i>
+                <td>
+                    @if($product->status == 1)
+                        <a href="javascript:;" onclick="handle_confirm('{{route('penjual.produk.unpublished',$product->id)}}');">
+                            <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                                <button class="btn btn-success">Unpublished</button>
+                            </span>
+                        </a>
+                    @else 
+                        <a href="javascript:;" onclick="handle_confirm('{{route('penjual.produk.published',$product->id)}}');">
+                            <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                                <button class="btn btn-warning">Published</button>
+                            </span>
+                        </a>
+                    @endif
+                    <a href="javascript:;" onclick="load_input('{{route('penjual.produk.edit',$product->id)}}');">
+                        <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                            <button class="btn btn-primary">Edit</button>
+                        </span>
                     </a>
-                    <a class="btn btn-xs btn-danger" href="javascript:;" onclick="handle_delete('{{route('penjual.produk.destroy', $product->id)}}')">
-                        <i class="fa fa-trash"></i>
+                    <a href="javascript:;" onclick="handle_delete('{{route('penjual.produk.destroy',$product->id)}}');" >
+                        <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                            <button class="btn btn-danger">Hapus</button>
+                        </span>
                     </a>
                 </td>
             </tr>

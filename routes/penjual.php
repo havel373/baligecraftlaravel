@@ -31,6 +31,8 @@ Route::prefix('penjual/')->name('penjual.')->group(function(){
     Route::get('dataproduk', [DashboardController::class,'dataproduk'])->name('dataproduk');
     Route::get('datapembayaran', [DashboardController::class,'datapembayaran'])->name('datapembayaran');
     Route::resource('produk', ProdukController::class);
+    Route::patch('produk/{produk}/publish', [ProdukController::class, 'published'])->name('produk.published');
+    Route::patch('produk/{produk}/unpublish', [ProdukController::class, 'unpublished'])->name('produk.unpublished');
     Route::resource('pesanan', PesananController::class);
     Route::prefix('auth/')->name('auth.')->group(function(){
         Route::post('login', [AuthController::class,'penjualLogin'])->name('login');
