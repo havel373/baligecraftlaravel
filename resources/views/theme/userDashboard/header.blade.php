@@ -77,6 +77,18 @@
                                     <i class="fa fa-pen"></i>
                                     <span>Ulasan Produk</span></a>
                             </li>
+                            <li class="menu-header">Menu Penjual</li>
+                            <li class="nav-item dropdown">
+                                <a href="{{route('penjual.dataproduk')}}" class="nav-link">
+                                    <i class="fa fa-box"></i> <span>Produk</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="{{route('penjual.datapesanan')}}" class="nav-link">
+                                    <i class="fa fa-clipboard-list"></i> <span>Pesanan Produk</span></a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="{{route('penjual.datapembayaran')}}" class="nav-link"><i class="fa fa-credit-card"></i> <span>Pembayaran</span></a>
+                            </li>
                         </ul>
                     </aside>
                 </div>

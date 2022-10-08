@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 06/10/2022 00:49:15
+ Date: 08/10/2022 08:05:15
 */
 
 SET NAMES utf8mb4;
@@ -36,7 +36,7 @@ CREATE TABLE `admin`  (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
-INSERT INTO `admin` VALUES (1, 'Pahala Picauly Sagala', 'pahala.picauly12@gmail.com', '$2y$10$DK.mo9IztJML1K49uStTj.3C812Gh5aOusIMpyxaRbYn/J1bmj2R6', '', NULL, NULL);
+INSERT INTO `admin` VALUES (1, 'Pahala Picauly Sagala', 'pahala.picauly12@gmail.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for berat_barang
@@ -229,14 +229,14 @@ CREATE TABLE `orders`  (
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES (153, 1, '0', '', 3, 457, 'jne', '', 'PKE3092230970', NULL, 0, '2022-09-30 15:58:47', '39000', '224000,00', 3, 1, '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', '', NULL, NULL);
-INSERT INTO `orders` VALUES (154, 0, '0', '', 6, 153, 'jne', '', 'JHE3092230156', '', 0, '2022-09-30 16:13:43', '36000', '376000,00', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
-INSERT INTO `orders` VALUES (155, 0, '0', '', 3, 455, 'pos', '', 'DNM3092230564', '', 0, '2022-09-30 16:34:32', '35500', '525500,00', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
-INSERT INTO `orders` VALUES (156, 0, '0', '', 7, 130, 'jne', '', 'ERO3092230904', '', 0, '2022-09-30 16:36:11', '95000', '895000,00', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
-INSERT INTO `orders` VALUES (157, 0, '0', '', 3, 402, 'jne', '', 'UCL3092230146', '', 0, '2022-09-30 16:37:42', '43000', '999999,99', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
-INSERT INTO `orders` VALUES (158, 0, '0', '', 7, 130, 'tiki', '', 'HOP3092220796', '', 0, '2022-09-30 16:39:12', '97000', '967000,00', 2, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
-INSERT INTO `orders` VALUES (159, 0, '0', '', 7, 131, 'tiki', '', 'DFZ3092220980', '', 0, '2022-09-30 16:40:48', '110000', '410000,00', 2, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
-INSERT INTO `orders` VALUES (160, 0, '0', '', 14, 167, 'jne', '', 'IXQ3092210085', '', 0, '2022-09-30 16:41:48', '69000', '269000,00', 1, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
+INSERT INTO `orders` VALUES (153, 1, '0', '', 3, 457, 'jne', '', 'PKE3092230970', NULL, 0, '2022-09-30 15:58:47', '39000', '269000', 3, 1, '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', '', NULL, NULL);
+INSERT INTO `orders` VALUES (154, 1, '0', '', 6, 153, 'jne', '', 'JHE3092230156', '', 0, '2022-09-30 16:13:43', '36000', '269000', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
+INSERT INTO `orders` VALUES (155, 1, '0', '', 3, 455, 'pos', '', 'DNM3092230564', '', 0, '2022-09-30 16:34:32', '35500', '269000', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
+INSERT INTO `orders` VALUES (156, 1, '0', '', 7, 130, 'jne', '', 'ERO3092230904', '', 0, '2022-09-30 16:36:11', '95000', '269000', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
+INSERT INTO `orders` VALUES (157, 1, '0', '', 3, 402, 'jne', '', 'UCL3092230146', '', 0, '2022-09-30 16:37:42', '43000', '269000', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
+INSERT INTO `orders` VALUES (158, 1, '0', '', 7, 130, 'tiki', '', 'HOP3092220796', '', 0, '2022-09-30 16:39:12', '97000', '269000', 2, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
+INSERT INTO `orders` VALUES (159, 1, '0', '', 7, 131, 'tiki', '', 'DFZ3092220980', '', 0, '2022-09-30 16:40:48', '110000', '269000', 2, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
+INSERT INTO `orders` VALUES (160, 1, '0', '', 14, 167, 'jne', '', 'IXQ3092210085', '', 0, '2022-09-30 16:41:48', '69000', '269000', 1, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for orders_item
@@ -444,7 +444,7 @@ CREATE TABLE `produk`  (
   `kategori` bigint(20) UNSIGNED NOT NULL,
   `terbaik` int(11) NOT NULL,
   `status` int(11) NOT NULL,
-  `produk_date` date NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `produk_date` date NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
@@ -516,6 +516,7 @@ INSERT INTO `settings` VALUES (2, 'payment_banks', '{\"mandiri\":{\"bank\":\"Man
 DROP TABLE IF EXISTS `ulasan`;
 CREATE TABLE `ulasan`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id_produk` bigint(20) UNSIGNED NULL DEFAULT NULL,
   `id_user` bigint(20) UNSIGNED NOT NULL,
   `nama_lengkap` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -530,9 +531,9 @@ CREATE TABLE `ulasan`  (
 -- ----------------------------
 -- Records of ulasan
 -- ----------------------------
-INSERT INTO `ulasan` VALUES (24, 1, 'Pahala Picauly Sagala', 'pahala.picauly67@gmail.com', 'Produknya bagus', 'Produknya bagus', '0000-00-00', NULL, NULL);
-INSERT INTO `ulasan` VALUES (29, 1, 'Pahala Picauly Sagala', 'pahalasagala772@gmail.com', 'Produknya bagus', 'Produkya bagusx', '0000-00-00', NULL, NULL);
-INSERT INTO `ulasan` VALUES (30, 1, 'Pahala Picauly Sagala', 'pahalasagala772@gmail.com', 'Produknya bagus', 'sip', '0000-00-00', NULL, NULL);
+INSERT INTO `ulasan` VALUES (24, 24, 1, 'Pahala Picauly Sagala', 'pahala.picauly67@gmail.com', 'Produknya bagus', 'Produknya bagus', '2022-10-06', NULL, NULL);
+INSERT INTO `ulasan` VALUES (29, 25, 1, 'Pahala Picauly Sagala', 'pahalasagala772@gmail.com', 'Produknya bagus', 'Produkya bagusx', '2022-10-06', NULL, NULL);
+INSERT INTO `ulasan` VALUES (30, 24, 1, 'Pahala Picauly Sagala', 'pahalasagala772@gmail.com', 'Produknya bagus', 'sip', '2022-10-06', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for user_verifikasi
@@ -588,7 +589,7 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'sagala123', 'Pahala Picauly Sagala', 'Medan', '1999-11-12', 'pahalasagala772@gmail.com', '$2y$10$hoR5JpWq51qQjIhgEAha6uZxUotJJSrOggn6MTqPxPop8CKugYFGS', 'index3.jpg', 'Jalan Aster 2 No 165', '20224', '-', '081269791233', '1', NULL, NULL);
-INSERT INTO `users` VALUES (7, 'sagala12345', '', '', '0000-00-00', 'pahala.picauly67@gmail.com', '$2y$10$2oKUHRJkgsCsqsS6MW4XfOUalCUBM/TJcg5t70G2X6SP2P/qsisxu', 'default.png', '', '', '', '', '1', NULL, NULL);
+INSERT INTO `users` VALUES (1, 'sagala123', 'Pakhomios Havel', 'Medan', '1999-11-12', 'pahalasagala772@gmail.com', '$2y$10$hoR5JpWq51qQjIhgEAha6uZxUotJJSrOggn6MTqPxPop8CKugYFGS', 'index3.jpg', 'Jalan Aster 2 No 165', '20224', '-', '081269791233', '1', NULL, '2022-10-06 22:45:18');
+INSERT INTO `users` VALUES (7, 'sagala12345', 'Orang', 'Jkt', '2000-09-09', 'pahala.picauly67@gmail.com', '$2y$10$hoR5JpWq51qQjIhgEAha6uZxUotJJSrOggn6MTqPxPop8CKugYFGS', 'default.png', 'jalanan', '0232', 'orang', '081269791233', '1', NULL, '2022-10-06 23:12:26');
 
 SET FOREIGN_KEY_CHECKS = 1;

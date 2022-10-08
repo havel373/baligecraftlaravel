@@ -78,7 +78,7 @@ return [
             'model' => App\Models\Admin::class,
         ],
 
-        'penjual' => [
+        'penjuals' => [
             'driver' => 'eloquent',
             'model' => App\Models\Penjual::class,
         ],

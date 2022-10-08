@@ -89,7 +89,11 @@
                                     <td align="right" colspan="6">
                                         <div class="checkout_btn_inner d-flex align-items-center">
                                             <a class="gray_btn" href="{{route('home')}}">Lanjut Belanja</a>
-                                            <a class="primary-btn ml-2" href="{{route('user.checkout',$item->id)}}">Langsung ke Checkout</button>
+                                            @if(Auth::user())
+                                                <a class="primary-btn ml-2" href="{{route('user.checkout',$item->id)}}">Langsung ke Checkout</button>
+                                            @else
+                                            <a class="primary-btn ml-2" href="{{route('auth.index')}}">Langsung ke Checkout</button>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

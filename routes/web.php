@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\ProdukController;
+use App\Http\Controllers\WebController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,7 @@ use App\Http\Controllers\User\ProdukController;
 |
 */
 
-
+Route::redirect('/', 'home', 301);
 Route::get('home', [WebController::class,'home'])->name('home');
 Route::prefix('auth/')->name('auth.')->group(function(){
     Route::get('index', [AuthController::class,'index'])->name('index');

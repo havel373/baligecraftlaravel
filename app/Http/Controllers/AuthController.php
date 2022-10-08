@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Penjual;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +65,48 @@ class AuthController extends Controller
 
     public function penjualIndex(){
         return view('pages.penjual.auth.main');
+    }
+
+    public function PenjualLogin(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'password' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if ($errors->has('email')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('email'),
+                ]);
+            } else {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('password'),
+                ]);
+            }
+        }
+        $check = Penjual::where("email", "=", $request->email)->first();
+        if ($check) {
+            if (Auth::guard('penjual')->attempt(['email' => $request->email, 'password' => $request->password])) {
+                    return response()->json([
+                        'alert' => 'success',
+                        'message' => 'Welcome back ' . Auth::guard('penjual')->user()->nama,
+                        'callback' => route('penjual.index'), 
+                    ]);
+            } else{
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => 'password salah', 
+                ]);
+            }
+        } else{
+            return response()->json([
+            'alert' => 'error',
+            'message' => 'Email tidak ditemukan.',
+            ]);
+        }
     }
     
     public function adminIndex(){
