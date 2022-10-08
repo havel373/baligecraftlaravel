@@ -11,7 +11,7 @@ class Orders extends Model
     public $table = 'orders';
 
     public function user(){
-        return $this->belongsTo(User::class,'id','user_id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
     
     public function get_all_orders(){
@@ -45,7 +45,11 @@ class Orders extends Model
         ->first(); 
     }
 
-    // public function detail(){
-    //     return $this->belongsTo(OrderItem::class,'id','order_id');
-    // }
+    public function detail(){
+        return $this->hasMany(OrderItem::class,'order_id','id');
+    }
+    
+    public function singleDetail(){
+        return $this->belongsTo(OrderItem::class,'id','order_id');
+    }
 }

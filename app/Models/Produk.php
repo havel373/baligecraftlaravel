@@ -32,6 +32,10 @@ class Produk extends Model
     {
         return asset('assets/upload/image/'. $this->gambar);
     }
+
+    public function order(){
+        return $this->belongsTo(OrderItem::class,'id','produk_id');
+    }
     public function category()
     {
         return $this->belongsTo(Kategori::class,'kategori','id');

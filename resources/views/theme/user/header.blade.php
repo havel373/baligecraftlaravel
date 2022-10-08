@@ -254,9 +254,9 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
                         @auth
-                        <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li class=" scroll active"><a href="{{route('home')}}">Beranda</a></li>
-                            <li class="scroll"><a href="#new-arrivals">Produk</a></li>
+                        <ul class="nav navbar-nav navbar-center">
+                            <li class="{{request()->is('home') ? 'active' : ''}}"><a href="{{route('home')}}">Beranda</a></li>
+                            <li class="scroll {{request()->is('produk/*') ? 'active' : ''}}"><a href="#new-arrivals" >Produk</a></li>
                             <li class="nav-item submenu dropdown">
                                 <a href="#">Layanan<span class="fa fa-angle-down"></span>
                                 </a>
@@ -271,9 +271,9 @@
                         </ul>
                         @endauth
                         @guest
-                        <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-                            <li class=" scroll active"><a href="{{('auth/index')}}">Beranda</a></li>
-                            <li class="scroll"><a href="{{('user/profile')}}">Produk</a></li>
+                        <ul class="nav navbar-nav navbar-center">
+                            <li class=" {{request()->is('home') ? 'active' : ''}}"><a href="{{route('home')}}">Beranda</a></li>
+                            <li class="scroll {{request()->is('produk/*') ? 'active' : ''}}"><a href="{{('user/profile')}}">Produk</a></li>
                             <li class="scroll"><a href="{{('user/daftarproduk');}}">Layanan</a></li>
                             <li class="scroll"><a href="{{('user/daftarproduk');}}">Tentang</a></li>
                         </ul>

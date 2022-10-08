@@ -27,31 +27,11 @@
                     <a class="btn btn-primary" href="javascript:;" onclick="load_input('{{route('penjual.produk.edit',$product->id)}}');" style="border-color: #e99c2e;">
                         <i class="fa fa-edit"></i>
                     </a>
-                    <a class="btn btn-xs btn-danger" data-toggle="modal" data-target="#myModal{{$product->id}}">
+                    <a class="btn btn-xs btn-danger" href="javascript:;" onclick="handle_delete('{{route('penjual.produk.destroy', $product->id)}}')">
                         <i class="fa fa-trash"></i>
                     </a>
                 </td>
             </tr>
-            <div class="modal fade" id="myModal{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-            
-                        <div class="modal-header">
-                            <h4 class="modal-title" id="myModalLabel">Hapus data?</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            
-                        </div>
-                        <div class="modal-body">
-                            <p>Yakin ingin menghapus data ini?</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a href="javascript:;" onclick="handle_delete('{{route('penjual.produk.destroy', $product->id)}}')" class="btn btn-danger">
-                                <i class="fa fa-trash-o"></i> Ya, Hapus data</a>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         @endforeach
     </tbody>
 </table>

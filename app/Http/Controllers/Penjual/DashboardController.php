@@ -16,10 +16,6 @@ class DashboardController extends Controller
         return view('pages.penjual.dashboard.produk.main');
     }
     
-    public function datapesanan(){
-        return view('pages.penjual.dashboard.datapesanan');
-    }
-    
     public function datapembayaran(){
         return view('pages.penjual.dashboard.datapembayaran');
     }

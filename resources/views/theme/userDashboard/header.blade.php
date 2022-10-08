@@ -109,8 +109,8 @@
                                     <a href="{{route('penjual.dataproduk')}}" class="nav-link ">
                                         <i class="fa fa-box"></i> <span>Produk</span></a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a href="{{route('penjual.datapesanan')}}" class="nav-link">
+                                <li class="nav-item dropdown {{request()->is('penjual/pesanan/*') ? 'active' : '' }}">
+                                    <a href="{{route('penjual.pesanan.index')}}" class="nav-link">
                                         <i class="fa fa-clipboard-list"></i> <span>Pesanan Produk</span></a>
                                 </li>
                                 <li class="nav-item dropdown">
