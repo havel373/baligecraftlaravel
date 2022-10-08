@@ -22,6 +22,8 @@ Route::group(['middleware' => ['auth:admin']], function () {
 });
 Route::prefix('admin/')->name('admin.')->group(function(){
     Route::resource('/produk', ProdukController::class);
+    Route::patch('/produk/{produk}/publish', [ProdukController::class, 'published'])->name('produk.published');
+    Route::patch('/produk/{produk}/unpublish', [ProdukController::class, 'unpublished'])->name('produk.unpublished');
 });
 Route::get('login', [AuthController::class,'adminIndex'])->name('login');
 Route::prefix('admin/auth/')->name('admin.auth.')->group(function(){

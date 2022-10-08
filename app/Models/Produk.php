@@ -8,6 +8,7 @@ class Produk extends Model
 {
 
     public $table = 'produk';
+    public $timestamps = false;
 
     public function get_all_best_products(){
         return Produk::select('produk.*')

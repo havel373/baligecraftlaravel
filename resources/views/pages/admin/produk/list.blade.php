@@ -12,8 +12,8 @@
     <tbody>
         @foreach($produk as $i => $product)
             <tr>
-                <td><?php echo $i; ?></td>
-                <td><?php echo $product->nama; ?></td>
+                <td>{{$i++}}</td>
+                <td>{{$product->nama}}</td>
                 <td><img src="{{asset('assets/upload/image/' . $product->gambar)}}" style="width:30%;" /></td>
                 <td>{{ $product->category->kategori_nama}}</td>
                 <td>
@@ -24,17 +24,29 @@
                     @endif
                 </td>
                 <td>
-                    @if($product->status == 0)
-                        <a class="btn btn-success" href="
-                        {{-- {{('admin/published_product/' . $product->produk_id)}} --}}
-                        ">
-                            <i class="fa fa-upload"></i>
+                    @if($product->status == 1)
+                        <a href="javascript:;" onclick="handle_confirm('{{route('admin.produk.unpublished',$product->id)}}');">
+                            <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                                <button class="btn btn-success">Unpublished</button>
+                            </span>
                         </a>
                     @else 
-                        <a class="btn btn-danger" href="<?php //('admin/unpublished_product/' . $product->produk_id); ?>">
-                            <i class="fa fa-upload"></i>
+                        <a href="javascript:;" onclick="handle_confirm('{{route('admin.produk.published',$product->id)}}');">
+                            <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                                <button class="btn btn-warning">Published</button>
+                            </span>
                         </a>
                     @endif
+                    <a href="javascript:;" onclick="load_input('{{route('admin.produk.edit',$product->id)}}');">
+                        <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                            <button class="btn btn-primary">Edit</button>
+                        </span>
+                    </a>
+                    <a href="javascript:;" onclick="handle_delete('{{route('admin.produk.destroy',$product->id)}}');" >
+                        <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                            <button class="btn btn-danger">Hapus</button>
+                        </span>
+                    </a>
                 </td>
             </tr>
         @endforeach
