@@ -207,13 +207,34 @@
                             </li>
                             @endauth
                             @guest
-                            <div class="attr-nav">
-                                <button class="btn-login">
-                                    <a href="{{route('auth.index')}}">
-                                        Login
+                            @if(Auth::guard('penjual')->user())
+                                <li class="dropdown">
+                                    <a href="('produk/cart')" class="dropdown-toggle" data-toggle="dropdown">
+                                        <span class="fa fa-shopping-cart"></span>
+                                        @php
+                                        $total_items = \Cart::getContent()->count();
+                                        @endphp
+                                        <span class="badge badge-bg-1">{{$total_items}}</span>
                                     </a>
-                                </button>
-                            </div>
+                                </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle user" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hi, {{Auth::guard('penjual')->user()->nama}}<span class="fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu menu">
+                                        <li class="nav-item"><a class="nav-link" href="{{route('user.akun')}}"><span class="lnr lnr-user"> Akun Saya</span> </a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{route('user.settings')}}"><span class="lnr lnr-cog"> Settings</span></a></li>
+                                        <li class="nav-item"><a class="nav-link" href="{{route('penjual.auth.logout')}}"><span class="lnr lnr-exit"> Logout</span></a></li>
+                                    </ul>
+                                </li>
+                            @else
+                                <div class="attr-nav">
+                                    <button class="btn-login">
+                                        <a href="{{route('auth.index')}}">
+                                            Login
+                                        </a>
+                                    </button>
+                                </div>
+                            @endif
                             @endguest
                         </ul>
 

@@ -93,7 +93,7 @@ class AuthController extends Controller
                     return response()->json([
                         'alert' => 'success',
                         'message' => 'Welcome back ' . Auth::guard('penjual')->user()->nama,
-                        'callback' => route('penjual.index'), 
+                        'callback' => route('home'), 
                     ]);
             } else{
                 return response()->json([
@@ -103,10 +103,16 @@ class AuthController extends Controller
             }
         } else{
             return response()->json([
-            'alert' => 'error',
-            'message' => 'Email tidak ditemukan.',
+                'alert' => 'error',
+                'message' => 'Email tidak ditemukan.',
             ]);
         }
+    }
+
+    public function penjualLogout(){
+        $user = Auth::guard('penjual')->user();
+        Auth::guard('penjual')->logout($user);
+        return redirect()->route('penjual.login');
     }
     
     public function adminIndex(){
