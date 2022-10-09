@@ -99,7 +99,7 @@
                                         @foreach ($items as $item)
                                             <tr>
                                                 <td>
-                                                    <img style="width: 30%;" src="{{asset('assets/upload/image/' . $item->produk_gambar)}}" alt="{{$item->produk_gambar}}">
+                                                    <img style="width: 30%;" src="{{$item->image}}" alt="{{$item->image}}">
                                                 </td>
                                                 <td>
                                                     <h5 class="mb-0">{{$item->produk->nama}}</h5>

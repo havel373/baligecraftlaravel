@@ -2,7 +2,8 @@
     <!--================Checkout Area =================-->
     <section class="checkout_area section-margin--small">
         <div class="container">
-            <form action="{{route('user.checkout.store',$id)}}" method="POST">
+            <form action="{{route('user.checkout.store', $id)}}" method="POST">
+                @csrf
                 <div class="billing_details">
                     <div class="row">
                         <div class="col-lg-8">
@@ -109,6 +110,7 @@
                                     <li><a href="#" id="subtotal" name="subtotal" value="">Sub Total <span>Rp 
                                         {{number_format($subtotal)}}
                                     </span></a></li>
+                                    <input type="hidden" name="subtotal_inp" id="subtotal_inp" value="{{$subtotal}}">
                                     <li><a href="#" id="ongkir" name="ongkir" value="">Biaya Pengiriman <span>Rp </span>
                                         </a></li>
                                     <li><a href="#" id="total" name="total" value="">Total <span></span></a></li>
@@ -143,9 +145,11 @@
             $.ajax({
                 type: 'GET',
                 url: "{{route('provinsi.get_kabupaten')}}",
-                data: 'prov_id=' + prov,
+                data: {
+                    'prov_id' : prov,
+                    'subtotal': {{$subtotal}}
+                },
                 success: function(data) {
-
                     //jika data berhasil didapatkan, tampilkan ke dalam option select kabupaten
                     $("#kabupaten").html(data);
                 }
@@ -156,8 +160,9 @@
         $('#kurir').change(function() {
 
             //Mengambil value dari option select provinsi asal, kabupaten, kurir kemudian parameternya dikirim menggunakan ajax
-            var kab = $('#kabupaten').val();
-            var kurir = $('#kurir').val();
+            var kab = $('#kabupaten').val(),
+            kurir = $('#kurir').val(),
+            subtotal = $('#subtotal_inp').val();
 
             $.ajax({
                 type: 'POST',
@@ -167,7 +172,8 @@
                 },
                 data: {
                     'kab_id': kab,
-                    'kurir': kurir
+                    'kurir': kurir,
+                    'subtotal' : subtotal,
                 },
                 success: function(data) {
 

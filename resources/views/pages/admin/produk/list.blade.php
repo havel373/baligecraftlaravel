@@ -12,9 +12,9 @@
     <tbody>
         @foreach($produk as $i => $product)
             <tr>
-                <td>{{$i++}}</td>
+                <td>{{$produk->firstItem() + $i}}</td>
                 <td>{{$product->nama}}</td>
-                <td><img src="{{asset('assets/upload/image/' . $product->gambar)}}" style="width:30%;" /></td>
+                <td><img src="{{$product->image}}" style="width:30%;" /></td>
                 <td>{{ $product->category->kategori_nama}}</td>
                 <td>
                     @if ($product->status == 1) 

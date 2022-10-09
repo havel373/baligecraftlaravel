@@ -16,12 +16,12 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('resi',100);
-            $table->string('gambar_resi',255);
+            $table->string('resi',100)->nullable();
+            $table->string('gambar_resi',255)->nullable();
             $table->integer('province');
             $table->integer('regency');
             $table->string('courier',25);
-            $table->string('courier_service',25);
+            $table->string('courier_service',25)->nullable();
             $table->string('order_number',16);
             $table->string('order_status',55);
             $table->integer('pesanan_status');

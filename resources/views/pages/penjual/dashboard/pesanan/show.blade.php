@@ -1,11 +1,14 @@
 <x-UserDashboard-Layout title="Order #{{$data->order_number}}">
     @php
-    $title = 'Order #' . $data->order_number;
-@endphp
+        $title = 'Order #' . $data->order_number;
+    @endphp
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1><?= $title; ?></h1>
+            <h1>{{$title}}</h1>
+        </div>
+        <div align="right">
+            <button onclick="history.back();" class="btn btn-info">Kembali</button>
         </div>
         @if($data->courier == "cod") 
             @if ($data->pesanan_status != 4) 
@@ -95,7 +98,7 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col"></th>
+                                    <th scope="col">Gambar</th>
                                     <th scope="col">Produk</th>
                                     <th scope="col">Jumlah beli</th>
                                     <th scope="col">Harga satuan</th>
@@ -105,13 +108,13 @@
                                 @foreach ($items as $item)
                                     <tr>
                                         <td>
-                                            <img style="width: 25%;" alt="{{ $item->nama }}" src="{{asset('assets/upload/image/' . $item->gambar) }}">
+                                            <img style="width:10%;" alt="{{ $item->produk->nama }}" src="{{asset('assets/upload/image/' . $item->produk->gambar) }}">
                                         </td>
                                         <td>
-                                            <h5 class="mb-0">{{ $item->nama }}</h5>
+                                            <h5 class="mb-0">{{ $item->produk->nama }}</h5>
                                         </td>
-                                        <td>{{ $item->order->order_qty }}</td>
-                                        <td>Rp {{number_format($item->order->order_price) }}</td>
+                                        <td>{{ $item->order_qty }}</td>
+                                        <td>Rp {{number_format($item->order_price) }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -131,21 +134,21 @@
                     <table class="table align-items-center table-flush table-hover">
                         <tr>
                             <td>Nama</td>
-                            <td><b><?php echo $delivery_data->user->nama_lengkap; ?></b></td>
+                            <td><b>{{ $delivery_data ? $delivery_data->user->nama_lengkap : '-'}}</b></td>
                         </tr>
                         <tr>
                             <td>No. HP</td>
-                            <td><b><?php echo $delivery_data->user->notelp; ?></b></td>
+                            <td><b>{{ $delivery_data ? $delivery_data->user->notelp : '-'}}</b></td>
                         </tr>
                         <tr>
                             <td>Alamat</td>
                             <td>
-                                <div style="white-space: initial;"><b><?php echo $delivery_data->user->alamat; ?></b></div>
+                                <div style="white-space: initial;"><b>{{ $delivery_data ? $delivery_data->user->alamat : '-'}}</b></div>
                             </td>
                         </tr>
                         <tr>
                             <td>Catatan</td>
-                            {{-- <td><b><?php echo $delivery_data->note; ?></b></td> --}}
+                            <td><b>{{$delivery_data ? $delivery_data->note  : '-'}}</b></td>
                         </tr>
                     </table>
                 </div>

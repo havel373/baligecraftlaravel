@@ -93,7 +93,7 @@
                                     <i class="fa fa-clipboard-list"></i>
                                     <span>Pesanan Saya</span></a>
                             </li>
-                            <li class="nav-item {{request()->is('user/pembayaran') ? 'active' : '' }}">
+                            <li class="nav-item {{request()->is('user/pembayaran') || request()->is('penjual/pembayaran') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{route('penjual.pembayaran')}}">
                                     <i class="fa fa-credit-card"></i>
                                     <span>Pembayaran Saya</span></a>
@@ -109,7 +109,7 @@
                                     <a href="{{route('penjual.dataproduk')}}" class="nav-link ">
                                         <i class="fa fa-box"></i> <span>Produk</span></a>
                                 </li>
-                                <li class="nav-item dropdown {{request()->is('penjual/pesanan/*') ? 'active' : '' }}">
+                                <li class="nav-item dropdown {{request()->is('penjual/pesanan/*') || request()->is('penjual/pesanan') ? 'active' : '' }}">
                                     <a href="{{route('penjual.pesanan.index')}}" class="nav-link">
                                         <i class="fa fa-clipboard-list"></i> <span>Pesanan Produk</span></a>
                                 </li>

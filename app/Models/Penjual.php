@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class Penjual extends Authenticatable
 {
+    public $timestamps = false;
     public $table = 'penjual';
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -42,4 +43,8 @@ class Penjual extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getImageAttribute(){
+        return asset('storage/'. $this->foto);
+    }
 }

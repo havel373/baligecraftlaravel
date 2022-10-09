@@ -7,6 +7,7 @@ use App\Models\Kategori;
 use App\Models\Produk;
 use App\Models\Ulasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,7 +21,7 @@ class ProdukController extends Controller
     public function index(Request $request)
     {
         if($request->ajax() ){
-            $produk = Produk::paginate(10);
+            $produk = Produk::where('user_id', Auth::guard('penjual')->user()->id)->paginate(10);
             return view('pages.penjual.dashboard.produk.list', compact('produk'));
         }
         return view('pages.penjual.dashboard.produk.main');

@@ -4,7 +4,7 @@
     @endphp
     <!-- Modal -->
     <div class="modal fade" id="checkStatus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form action="{{('transaction.process')}}" method="POST">
+        <form id="content_filter">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -16,9 +16,8 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="orderid" class="col-form-label">Order ID/Invoice</label>
-                            <input type="text" required class="form-control" name="order_id" id="orderid" autocomplete="off">
+                            <input type="text" required class="form-control" name="order_id" id="orderid" >
                         </div>
-                        <input type="hidden" name="action" value="status">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

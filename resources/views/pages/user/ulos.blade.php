@@ -107,7 +107,7 @@
 
                             <div class="single-new-arrival">
                                 <div class="single-new-arrival-bg">
-                                    <img src="{{asset('assets/upload/image/' . $list_ulos->gambar)}}" alt="new-arrivals images">
+                                    <img src="{{$list_ulos->image}}" alt="new-arrivals images">
                                     <div class="single-new-arrival-bg-overlay"></div>
                                     <div class="new-arrival-cart">
                                         <p>

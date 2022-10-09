@@ -54,10 +54,13 @@ class PesananController extends Controller
      */
     public function show(Orders $pesanan)
     {
-        $items = Produk::where('id', $pesanan->singleDetail->produk_id)->get();
-        dd($pesanan->singleDetail->produk_id);
-        $delivery_data = Orders::where('id',$pesanan->id)->first();
-        return view('pages.penjual.dashboard.pesanan.show', ['data' => $pesanan, 'items' => $items, 'delivery_data' => $delivery_data]);
+        $items = OrderItem::where('order_id', $pesanan->id)
+        ->groupBy('produk_id')
+        ->get();    
+        $delivery_data = Orders::where('id',$pesanan->id)
+        ->pluck('delivery_data')
+        ->first();
+        return view('pages.penjual.dashboard.pesanan.show', ['data' => $pesanan, 'items' => $items, 'delivery_data' => json_decode($delivery_data)]);
     }
 
     /**

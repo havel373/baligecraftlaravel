@@ -16,7 +16,6 @@
                 </div>
                 <div class="card">
                     <div class="card-body {{ count($payments) > 0 ? ' p-0' : ''}}">
-                        <div class="alert alert-info"><?php echo $flash; ?></div>
                         @if(count($payments) > 0)
                             <table class=" table table-borderless">
                                 <thead>

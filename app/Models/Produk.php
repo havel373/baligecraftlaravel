@@ -30,7 +30,7 @@ class Produk extends Model
 
     public function getImageAttribute()
     {
-        return asset('assets/upload/image/'. $this->gambar);
+        return asset('storage/'. $this->gambar);
     }
 
     public function order(){

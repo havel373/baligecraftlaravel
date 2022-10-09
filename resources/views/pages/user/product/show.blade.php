@@ -21,7 +21,7 @@
                             <li><a class="active" href="#"><span>Kategori</span> : {{$produk->category->kategori_nama}}</a></li>
                             </br>
                             <li><a class="active" href="#"><span>Penjual</span> : {{ $produk->penjual ?  $produk->penjual->nama : ''}}</a></li>
-                            </br>
+                        </br>
                             <li><a href="#"><span>Stok</span> : {{ $produk->kuantitas }}</a></li>
                         </ul>
                         <p>{{$produk->deskripsi_pendek}}</p>
@@ -31,7 +31,7 @@
                             <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;" class="reduced items-count" type="button"><i class="ti-angle-right"></i></button>
                             <form action="{{route('cart.store')}}" method="post">
                                 @csrf
-                                <input type="number" class="buyfield" name="qty" value="1" />
+                                <input type="number" class="buyfield" name="qty" value="1" min="1" />
                                 <input type="hidden" class="buyfield" name="produk_id" value="{{ $produk->id}}" />
                                 <input type="hidden" class="buyfield" name="name" value="{{ $produk->nama}}" />
                                 <input type="hidden" class="buyfield" name="image" value="{{ $produk->image }}" />

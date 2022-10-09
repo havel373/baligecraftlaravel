@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 class ProvinceController extends Controller
 {
     public function get_kabupaten(Request $request){
-        $provinsi_id = $_GET['prov_id'];
 
+        $provinsi_id = intval($request->prov_id);
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => "http://api.rajaongkir.com/starter/city?province=$provinsi_id",
@@ -37,7 +37,9 @@ class ProvinceController extends Controller
         $data = json_decode($response, true);
         for ($i = 0; $i < count($data['rajaongkir']['results']); $i++) {
             echo "<option value='" . $data['rajaongkir']['results'][$i]['city_id'] . "'>" . $data['rajaongkir']['results'][$i]['city_name'] . "</option>";
-        }        
+        }
+        // $subtotal = $request->subtotal;
+        // echo $subtotal;
     }
 
     function get_kurir(Request $request)

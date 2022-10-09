@@ -24,7 +24,10 @@ class AccountController extends Controller
     }
 
     public function ulos(){
-        $list_ulos = Produk::where('kategori',3)
+        $list_ulos = Produk::select('produk.*','kategori.id','kategori.kategori_nama')
+        ->join('kategori','kategori.id','=','produk.kategori')
+        ->where('kategori.kategori_nama','Ulos')
+        ->where('produk.status', 1)
         ->get();
         return view('pages.user.ulos',compact('list_ulos'));
     }

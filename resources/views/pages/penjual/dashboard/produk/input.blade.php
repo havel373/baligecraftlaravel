@@ -62,8 +62,8 @@
                                             <label>Produk Terbaik</label>
                                             <div class="controls">
                                                 <select id="produk_terbaik" name="terbaik" class="form-control">
-                                                    <option value="1">Terbaik</option>
-                                                    <option value="0">Tidak Terbaik</option>
+                                                    <option value="1" {{$produk->terbaik == 1 ? 'selected' : ''}}>Terbaik</option>
+                                                    <option value="0" {{$produk->terbaik == 0 ? 'selected' : ''}}>Tidak Terbaik</option>
                                                 </select>
                                             </div>
         
@@ -75,7 +75,7 @@
                                             <div class="controls">
                                                 <select name="kategori" class="form-control">
                                                    @foreach ($category as $kategori)
-                                                        <option value="{{$kategori->id}}">{{$kategori->kategori_nama}}</option>
+                                                        <option value="{{$kategori->id}}" {{$kategori->id == $produk->terbaik ? 'selected' : ''}}>{{$kategori->kategori_nama}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -85,8 +85,8 @@
                                             <label>Status</label>
                                             <div class="controls">
                                                 <select id="produk_status" name="status" class="form-control">
-                                                    <option value="1">Published</option>
-                                                    <option value="0">UnPublished</option>
+                                                    <option value="1" {{$produk->status == 1 ? 'selected' : ''}}>Published</option>
+                                                    <option value="0" {{$produk->status == 0 ? 'selected' : ''}}>UnPublished</option>
                                                 </select>
                                             </div>
         
@@ -95,14 +95,14 @@
                                     <div class="row">
                                         <div class="form-group col-md-12 col-12">
                                             <label>Deskripsi Pendek</label>
-                                            <textarea name="deskripsi_pendek" class="form-control summernote-simple" value="{{ $produk->deskripsi_pendek }}"></textarea>
+                                            <textarea name="deskripsi_pendek" class="form-control summernote-simple" >{{ $produk->deskripsi_pendek }}</textarea>
         
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-md-12 col-12">
                                             <label>Deskripsi Panjang</label>
-                                            <textarea name="deskripsi_panjang" class="form-control summernote-simple" value="{{ $produk->deskripsi_panjang }}"></textarea>
+                                            <textarea name="deskripsi_panjang" class="form-control summernote-simple">{{ $produk->deskripsi_panjang }}</textarea>
         
                                         </div>
                                     </div>

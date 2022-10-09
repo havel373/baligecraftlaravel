@@ -20,7 +20,9 @@ class ProdukController extends Controller
     public function index(Request $request)
     {
         if($request->ajax() ){
-            $produk = Produk::paginate(10);
+            $produk = Produk::
+            where('produk.status', 1)
+            ->paginate(10);
             return view('pages.admin.produk.list', compact('produk'));
         }
         return view('pages.admin.produk.main');

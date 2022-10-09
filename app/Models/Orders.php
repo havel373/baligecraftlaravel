@@ -15,8 +15,7 @@ class Orders extends Model
     }
     
     public function get_all_orders(){
-        $id = Auth::user()->id;
-        return Orders::where('user_id',Auth::user()->id)
+        return Orders::where('user_id',Auth::guard('penjual')->user() ? Auth::guard('penjual')->user()->id : Auth::user()->id)
         ->orderBy('order_date','DESC')
         ->paginate(10);
     }

@@ -10,7 +10,14 @@
                 </div>
             </div>
             <div class="section-body">
-                <h2 class="section-title">Hi, {{Auth::user()->username}}</h2>
+                @auth
+                    <h2 class="section-title">Hi, {{Auth::user()->username}}</h2>
+                @endauth
+                @guest
+                @if(Auth::guard('penjual')->user())            
+                    <h2 class="section-title">Hi, {{Auth::guard('penjual')->user()->nama}}</h2>
+                @endif
+                @endguest
                 <p class="section-lead">
                     Kelola Informasi Profil Anda pada Halaman ini
                 </p>

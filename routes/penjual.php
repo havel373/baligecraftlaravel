@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth:penjual']], function () {
     Route::get('/penjual',[PenjualController::class,'index'])->name('penjual.index');
 });
 Route::prefix('penjual/')->name('penjual.')->group(function(){
+    Route::patch('editProfile/{profile}', [PenjualController::class, 'editProfile'])->name('editProfile');
     Route::get('akun', [PenjualController::class,'akun'])->name('akun');
     Route::get('pembayaran', [PenjualController::class,'pembayaran'])->name('pembayaran');
     Route::get('settings', [PenjualController::class,'settings'])->name('settings');

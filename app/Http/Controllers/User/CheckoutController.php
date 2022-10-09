@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Darryldecode\Cart\Cart;
+use App\Models\Orders;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -39,7 +40,42 @@ class CheckoutController extends Controller
         return view('pages.user.checkout.main', compact('cart_order','get','id'));
     }
 
-    public function store(){
-        
+    public function store(Request $request, \Cart $id){
+        // dd($request->all());
+        $order = new Orders;
+        $order->user_id = Auth::user()->id;
+        // $order->resi = 'tes';
+        // $order->gambar_resi = 'tes';
+        $order->province = $request->provinsi;
+        $order->regency = $request->kabupaten;
+        $order->courier = $request->kurir;
+        // $order->courier_service = $request->kurir;
+        // $order->order_number = $request->kurir;
+        $order->order_status = $request->kurir;
+        $order->pesanan_status = $request->kurir;
+        $order->order_date = date('Y-m-d');
+        $order->ongkir = $request->pilih_ongkir;
+        $order->total_price = $request->total_input;
+        // $order->total_items = $request->total_input;
+        // $order->payment_method = $request->total_input;
+        // $order->payment_method = $request->total_input;
+        // $order->delivery_data = $request->total_input;
+        // $order->link_pay = $request->total_input;
+        $order->save();
+        return redirect()->route('home');
+    }
+
+    public function create_order_number(){
+        $this->load->helper('string');
+
+        $alpha = strtoupper(random_string('alpha', 3));
+        $num = random_string('numeric', 3);
+        $count_qty = count($quantity);
+
+
+        $number = $alpha . date('j') . date('n') . date('y') . $count_qty . $user_id . $coupon_id . $num;
+        //Random 3 letter . Date . Month . Year . Quantity . User ID . Coupon Used . Numeric
+
+        return $number;
     }
 }

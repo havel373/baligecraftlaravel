@@ -19,7 +19,8 @@
                                 <div class="col-12 col-md-12 col-lg-12">
                                     <div class="card profile-widget">
                                         <div class="profile-widget-header">
-                                            <img alt="image" src="{{asset(Auth::guard('penjual')->user()->foto)}}" class="rounded-circle profile-widget-picture" style="width:100px; height:100px;">
+                                            {{-- {{dd(Auth::guard('penjual')->user()->image)}} --}}
+                                            <img alt="image" src="{{Auth::guard('penjual')->user()->image}}" class="rounded-circle profile-widget-picture" style="width:100px; height:100px;">
     
                                             <div class=" profile-widget-items">
                                                 <div class="profile-widget-item">
