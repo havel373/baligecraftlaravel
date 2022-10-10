@@ -43,7 +43,6 @@ class CheckoutController extends Controller
 
     public function store(Request $request,$id){
         $carts = \Cart::getContent();
-        dd($carts->count());
         $order = new Orders;
         $order->user_id = Auth::user()->id;
         $order->resi = null;
@@ -63,31 +62,37 @@ class CheckoutController extends Controller
         // $order->payment_method = $request->total_input;
         // $order->delivery_data = $request->total_input;
         // $order->link_pay = $request->total_input;
+        $order->order_number = $this->create_order_number();
         $order->save();
         $item = new OrderItem;
-        foreach($carts as $i => $data){
+        // menampilkan semua barang yang ada di cart
+        $products = [];
+        foreach ($carts as $order) {
+                $products[] = $order;
+        }
+        dd($products);
+        for($i=0; $i < count($products); $i++){
             $item->order_id = $order->id;
-            $item->produk_id = $data->id;
-            $item->order_qty = $data->quantity;
-            $item->order_price = $data->price * $data->quantity;
+            $item->produk_id = $products[$i]['id'];
+            $item->order_qty = $products[$i]['quantity'];
+            $item->order_price = $products[$i]['price'] * $products[$i]['quantity'];
             $item->created_at = date('Y-m-d');
             $item->updated_at = date('Y-m-d');
+            // dd($item);
             $item->save();
         }
         return redirect()->route('home');
     }
 
-    public function create_order_number(){
-        $this->load->helper('string');
-
-        $alpha = strtoupper(random_string('alpha', 3));
-        $num = random_string('numeric', 3);
-        $count_qty = count($quantity);
-
-
-        $number = $alpha . date('j') . date('n') . date('y') . $count_qty . $user_id . $coupon_id . $num;
+    public function create_order_number(){    
         //Random 3 letter . Date . Month . Year . Quantity . User ID . Coupon Used . Numeric
 
-        return $number;
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < 3; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString . date('dmy') . rand(0, 9999) . Auth::user()->id;
     }
 }

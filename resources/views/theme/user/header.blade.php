@@ -188,7 +188,7 @@
                         <ul>
                             @auth
                             <li class="dropdown">
-                                <a href="('produk/cart')" class="dropdown-toggle" data-toggle="dropdown">
+                                <a href="{{route('cart.list')}}" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="fa fa-shopping-cart"></span>
                                     @php
                                        $total_items = \Cart::getContent()->count();
