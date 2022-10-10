@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\OrderItem;
 use App\Models\Orders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,28 +41,39 @@ class CheckoutController extends Controller
         return view('pages.user.checkout.main', compact('cart_order','get','id'));
     }
 
-    public function store(Request $request, \Cart $id){
-        // dd($request->all());
+    public function store(Request $request,$id){
+        $carts = \Cart::getContent();
+        dd($carts->count());
         $order = new Orders;
         $order->user_id = Auth::user()->id;
-        // $order->resi = 'tes';
-        // $order->gambar_resi = 'tes';
+        $order->resi = null;
+        $order->gambar_resi = null;
         $order->province = $request->provinsi;
         $order->regency = $request->kabupaten;
         $order->courier = $request->kurir;
-        // $order->courier_service = $request->kurir;
-        // $order->order_number = $request->kurir;
+        $order->courier_service = null;
+        $order->order_number = $request->kurir;
         $order->order_status = $request->kurir;
         $order->pesanan_status = $request->kurir;
         $order->order_date = date('Y-m-d');
         $order->ongkir = $request->pilih_ongkir;
         $order->total_price = $request->total_input;
-        // $order->total_items = $request->total_input;
+        $order->total_items = $carts->count();
         // $order->payment_method = $request->total_input;
         // $order->payment_method = $request->total_input;
         // $order->delivery_data = $request->total_input;
         // $order->link_pay = $request->total_input;
         $order->save();
+        $item = new OrderItem;
+        foreach($carts as $i => $data){
+            $item->order_id = $order->id;
+            $item->produk_id = $data->id;
+            $item->order_qty = $data->quantity;
+            $item->order_price = $data->price * $data->quantity;
+            $item->created_at = date('Y-m-d');
+            $item->updated_at = date('Y-m-d');
+            $item->save();
+        }
         return redirect()->route('home');
     }
 
