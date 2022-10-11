@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\OrderItem;
 use App\Models\Orders;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,33 +55,62 @@ class CheckoutController extends Controller
         $order->order_number = $request->kurir;
         $order->order_status = $request->kurir;
         $order->pesanan_status = $request->kurir;
-        $order->order_date = date('Y-m-d');
+        $order->order_date = now();
         $order->ongkir = $request->pilih_ongkir;
         $order->total_price = $request->total_input;
         $order->total_items = $carts->count();
+        $delivery_data = ['user' => ['nama_lengkap' => Auth::user()->nama_lengkap, 'notelp' => Auth::user()->notelp, 'alamat' => $request->alamat], 'note' => $request->note];
+        dd($delivery_data);
+        $order->delivery_data = $delivery_data;
         // $order->payment_method = $request->total_input;
         // $order->payment_method = $request->total_input;
         // $order->delivery_data = $request->total_input;
         // $order->link_pay = $request->total_input;
         $order->order_number = $this->create_order_number();
         $order->save();
-        $item = new OrderItem;
         // menampilkan semua barang yang ada di cart
-        $products = [];
-        foreach ($carts as $order) {
-                $products[] = $order;
-        }
-        dd($products);
-        for($i=0; $i < count($products); $i++){
+        $cart = \Cart::getContent();
+        foreach ($cart as $i => $items) {
+            $item = new OrderItem;
             $item->order_id = $order->id;
-            $item->produk_id = $products[$i]['id'];
-            $item->order_qty = $products[$i]['quantity'];
-            $item->order_price = $products[$i]['price'] * $products[$i]['quantity'];
+            $item->produk_id = $items['id'];
+            $item->order_qty = $items['quantity'];
+            $item->order_price = $items['price'] * $items['quantity'];
+            $item->created_at = date('Y-m-d H:i:s');
+            $item->updated_at = date('Y-m-d H:i:s');
+            $item->save();
+            if (is_array($items['conditions']) && !empty($items['conditions'])) {
+                $temp = [];
+                // get the subtotal with conditions applied
+                $item['price_sum'] = $item->getPriceSumWithConditions();
+        
+                foreach ($item['conditions'] as $key => $value) {
+                    $temp[] = [
+                        'name' => $value->getName(),
+                        'value' => $value->getValue(),
+                    ];
+                }
+        
+                $item['_conditions'] = $temp;
+            }
+            $item->price;
+            $item->quantity; // the quantity
+            $item->attributes; // the attributes
+        }
+        foreach($cart as $i => $items){
+            $item->order_id = $order->id;
+            $item->produk_id = $items['id'];
+            $item->order_qty = $items['quantity'];
+            $item->order_price = $items['price'] * $items['quantity'];
             $item->created_at = date('Y-m-d');
             $item->updated_at = date('Y-m-d');
-            // dd($item);
             $item->save();
+            $produk = Produk::where('id',$items['id'])->first();
+            $produk->kuantitas -= $items['quantity'];
+            $produk->update();
         }
+        // die;
+        \Cart::clear();
         return redirect()->route('home');
     }
 

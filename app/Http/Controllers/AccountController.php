@@ -171,7 +171,7 @@ class AccountController extends Controller
         $params['title'] = 'Order #' . $data->order_number;
         $order['data'] = $data;
         $order['produk'] = $data;
-        // $order['items'] = $items;
+        $order['items'] = $items;
         $items = OrderItem::where('order_id',$id)->get();
         $delivery_data = json_decode($data->delivery_data);
         return view('pages.dashboard.detailOrder', compact('data','items','delivery_data'));

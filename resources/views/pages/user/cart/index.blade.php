@@ -48,8 +48,8 @@
                                             @csrf
                                                 @method('PATCH')
                                                 <div class="product_count">
-                                                    <input type="number" name="quantity" value="{{$item['quantity']}}" />
-                                                    <input type="hidden" name="id" value="{{$item['id']}}" />
+                                                    <input type="number" name="quantity" value="{{$item['quantity']}}" min="1"/>
+                                                    <input type="hidden" name="id" value="{{$item['id']}}"/>
                                                 </div>
                                                 <input type="submit" name="submit" value="Update" class="btn btn-primary" style="border-color: #e99c2e;" />
                                             </form>
