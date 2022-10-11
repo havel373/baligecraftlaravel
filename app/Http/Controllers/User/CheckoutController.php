@@ -110,7 +110,9 @@ class CheckoutController extends Controller
         }
         // die;
         \Cart::clear();
-        return redirect()->route('home');
+        $message = "Halo, nama saya " . Auth::user()->name . " saya membeli produk dengan nomor order : " . $order->order_number . " dengan total harga : " . $order->total_price . " dengan kurir : " . $order->courier . " dengan ongkir : " . $order->ongkir ;
+        // make return redirect to whatsapp
+        return redirect('https://api.whatsapp.com/send?phone=6281362926803&text=' . $message)->with('success', 'Order Berhasil Ditambahkan');
     }
 
     public function create_order_number(){    

@@ -82,6 +82,10 @@
                                         </b>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>Upload Resi : </td>
+                                    <td><b class="statusField"><input type="file"></b></td>
+                                </tr>
                             </table>
                         </div>
 

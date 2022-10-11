@@ -13,6 +13,9 @@
                                 <input type="hidden" class="form-control" id="biayaongkir" name="biayaongkir" value="">
                             </div>
                             <div class="col-md-12 form-group p_star">
+                                <span>Pembayaran Dapat dilakukan melalui : BCA (08136219414) </span>
+                            </div>
+                            <div class="col-md-12 form-group p_star">
                                 <label>Nama Lengkap</label>
                                 <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" placeholder="Nama Penerima" value="{{Auth::user()->nama_lengkap}}">
                             </div>
