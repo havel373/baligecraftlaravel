@@ -14,7 +14,7 @@
             <tr>
                 <td>{{ $produk->firstItem() + $i}}</td>
                 <td style="padding: 30px 50px;">{{ $product->nama }}</td>
-                <td style="padding: 30px 50px;"><img src="{{asset('assets/upload/image/' . $product->gambar)}}" style="width:45%;" /></td>
+                <td style="padding: 30px 50px;"><img src="{{$product->image}}" style="width:45%;" /></td>
                 <td style="padding: 30px 50px;">{{$product->category->kategori_nama }}</td>
                 <td>
                     @if ($product->status == 1) 

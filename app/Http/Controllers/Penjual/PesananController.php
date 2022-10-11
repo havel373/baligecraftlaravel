@@ -71,7 +71,12 @@ class PesananController extends Controller
      */
     public function edit(Orders $pesanan)
     {
-        //
+        $items = OrderItem::where('order_id', $pesanan->id)
+        ->groupBy('produk_id')
+        ->get();    
+        $delivery_data = Orders::where('id',$pesanan->id)
+        ->pluck('delivery_data');
+        return view('pages.penjual.dashboard.pesanan.input', ['data' => $pesanan, 'items' => $items, 'delivery_data' => json_decode($delivery_data)]);
     }
 
     /**
@@ -83,12 +88,13 @@ class PesananController extends Controller
      */
     public function update(Request $request, Orders $pesanan)
     {
-        $pesanan->order_status = 'settlement';
-        $pesanan->pesanan_status = 4;
+        $pesanan->resi = $request->resi;
+        $pesanan->gambar_resi = $request->foto_resi;
+        $pesanan->pesanan_status = $request->status;
         $pesanan->update();
         return response()->json([
             'alert'=>'success',
-            'message'=>'Produk Berhasil Di konfirmasi',
+            'message'=>'Pesanan Berhasil Di konfirmasi',
         ]);
     }
 

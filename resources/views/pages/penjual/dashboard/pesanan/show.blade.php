@@ -83,7 +83,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Upload Resi : </td>
+                                    <td>{{$data->gambar_resi == null ? 'Upload Resi' : 'Resi'}} : </td>
                                     <td><b class="statusField"><input type="file"></b></td>
                                 </tr>
                             </table>
@@ -112,7 +112,7 @@
                                 @foreach ($items as $item)
                                     <tr>
                                         <td>
-                                            <img style="width:10%;" alt="{{ $item->produk->nama }}" src="{{asset('assets/upload/image/' . $item->produk->gambar) }}">
+                                            <img style="width:10%;" alt="{{ $item->produk->nama }}" src="{{$item->produk->image}}">
                                         </td>
                                         <td>
                                             <h5 class="mb-0">{{ $item->produk->nama }}</h5>

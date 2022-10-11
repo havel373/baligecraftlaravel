@@ -47,6 +47,7 @@
                 </div>
             </section>
         </div>
+        <div id="content_input"></div>
     </div>
 @section('custom_js')
     <script>

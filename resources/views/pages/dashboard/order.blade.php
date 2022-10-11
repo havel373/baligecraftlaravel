@@ -35,7 +35,7 @@
                                             @php
                                                 setlocale(LC_TIME, 'ID_id');
                                             @endphp
-                                            <td>{{ \Carbon\Carbon::parse($order->created_at)->diffForHumans()}} <br> {{\Carbon\Carbon::parse($order->created_at)->formatLocalized('%A %d %B %Y')}} <br> {{\Carbon\Carbon::parse($order->created_at)->formatLocalized('%H:%M:%S')}}</td>
+                                            <td>{{ \Carbon\Carbon::parse($order->order_date)->diffForHumans()}} <br> {{\Carbon\Carbon::parse($order->order_date)->formatLocalized('%A %d %B %Y')}} <br> {{\Carbon\Carbon::parse($order->order_date)->formatLocalized('%H:%M:%S')}}</td>
                                             @if($order->order_status == 'pending' || $order->order_status == "")
                                                 <td>Belum dibayar</td>
 
