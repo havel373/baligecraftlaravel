@@ -53,15 +53,14 @@ class CheckoutController extends Controller
         $order->courier = $request->kurir;
         $order->courier_service = null;
         $order->order_number = $request->kurir;
-        $order->order_status = $request->kurir;
-        $order->pesanan_status = $request->kurir;
+        $order->order_status = 'pending';
+        $order->pesanan_status = 0;
         $order->order_date = now();
         $order->ongkir = $request->pilih_ongkir;
         $order->total_price = $request->total_input;
         $order->total_items = $carts->count();
         $delivery_data = ['user' => ['nama_lengkap' => Auth::user()->nama_lengkap, 'notelp' => Auth::user()->notelp, 'alamat' => $request->alamat], 'note' => $request->note];
-        dd($delivery_data);
-        $order->delivery_data = $delivery_data;
+        $order->delivery_data = json_encode($delivery_data);
         // $order->payment_method = $request->total_input;
         // $order->payment_method = $request->total_input;
         // $order->delivery_data = $request->total_input;

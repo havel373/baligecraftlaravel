@@ -55,6 +55,11 @@
 
                     <td>
                         <a href="{{route('penjual.pesanan.show',$order->id)}}" class="btn btn-sm btn-info"><i class="fa fa-eye"></i></a>
+                        <a href="javascript:;" onclick="handle_confirm('{{route('penjual.pesanan.update',$order->id)}}');">
+                            <span class="svg-icon svg-icon-5 svg-icon-gray-700">
+                                <button class="btn btn-success">Pembayaran Selesai</button>
+                            </span>
+                        </a>
                     </td>
                 </tr>
             @endforeach

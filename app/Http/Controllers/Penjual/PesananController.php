@@ -83,7 +83,13 @@ class PesananController extends Controller
      */
     public function update(Request $request, Orders $pesanan)
     {
-        //
+        $pesanan->order_status = 'settlement';
+        $pesanan->pesanan_status = 4;
+        $pesanan->update();
+        return response()->json([
+            'alert'=>'success',
+            'message'=>'Produk Berhasil Di konfirmasi',
+        ]);
     }
 
     /**
