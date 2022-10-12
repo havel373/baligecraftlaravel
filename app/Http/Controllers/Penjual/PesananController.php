@@ -93,7 +93,11 @@ class PesananController extends Controller
             $file = request()->file('foto_resi')->store('foto_resi');
             $pesanan->gambar_resi = $file;
         }
-        $pesanan->pesanan_status = $request->status;
+        if($request->status == 4){
+            $pesanan->order_status = 'settlement';
+        }else{
+            $pesanan->pesanan_status = $request->status;
+        }
         $pesanan->update();
         return response()->json([
             'alert'=>'success',
