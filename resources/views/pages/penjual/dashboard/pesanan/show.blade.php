@@ -68,7 +68,7 @@
                                                 <b>Transaksi Selesai</b>
                                             @elseif ($data->pesanan_status == 0) 
                                                 @if ($data->order_status == 'pending') 
-                                                    <b> class="lead">Belum dibayar</b>
+                                                    <b>Belum dibayar</b>
                                                  @elseif ($data->order_status == 'settlement') 
                                                     <b>Sudah dibayar</b>
                                                  @elseif ($data->order_status == 'cancel') 
@@ -83,8 +83,12 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>{{$data->gambar_resi == null ? 'Upload Resi' : 'Resi'}} : </td>
-                                    <td><b class="statusField"><input type="file"></b></td>
+                                    <td>Resi : </td>
+                                    @if($data->gambar_resi == null)
+                                    <td><b class="statusField">-</td>
+                                    @else
+                                        <td><b class="statusField">{{$data->image}}</td>
+                                    @endif
                                 </tr>
                             </table>
                         </div>

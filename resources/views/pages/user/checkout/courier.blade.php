@@ -95,7 +95,7 @@ if ($err) {
                         html = '';
                         var ongkir = $("#pilih_ongkir").val();
                         let totalongkir = parseInt(data); 
-                        let grandtotal = parseInt($("#subtotal_inp").val()) + totalongkir;
+                        let grandtotal = parseInt($("#subtotal_inp").val()) + parseInt(totalongkir);
                         $('#total_input').val(grandtotal);
                         html += '<a value=' + '>' + 'Biaya Pengiriman <span>Rp ' + ongkir + '</span></a>'
                         $('#ongkir').html(html);

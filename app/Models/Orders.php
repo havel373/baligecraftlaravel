@@ -10,6 +10,10 @@ class Orders extends Model
 
     public $table = 'orders';
 
+    public function getImageAttribute(){
+        return asset('storage/' . $this->gambar_resi);
+    }
+
     public function user(){
         return $this->belongsTo(User::class,'user_id','id');
     }
@@ -35,6 +39,10 @@ class Orders extends Model
         ->leftJoin('resi','resi.nomor', '=','orders.resi')
         ->where('orders.id', $id)
         ->first();
+    }
+
+    public function order_review(){
+        return $this->hasMany(Ulasan::class, 'id_order', 'id');
     }
 
     public function getOrderByInvoice($id){

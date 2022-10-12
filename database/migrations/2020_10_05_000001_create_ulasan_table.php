@@ -18,7 +18,6 @@ class CreateUlasanTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->string('nama_lengkap',255);
             $table->string('email',255);
-            $table->string('judul',100);
             $table->longtext('isi_ulasan');
             $table->date('tanggal');
             $table->timestamps();

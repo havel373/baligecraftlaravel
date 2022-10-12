@@ -145,10 +145,13 @@ class AccountController extends Controller
         ]);
     }
 
-    public function order(){
-        $init = new Orders;
-        $orders = $init->get_all_orders();
-        return view('pages.dashboard.order', compact('orders'));
+    public function order(Request $request){
+        if($request->ajax() ){
+            $init = new Orders;
+            $orders = $init->get_all_orders();
+            return view('pages.dashboard.order_list', compact('orders'));
+        }
+        return view('pages.dashboard.order');
     }
     
     public function pembayaran(){

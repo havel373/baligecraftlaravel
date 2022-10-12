@@ -93,15 +93,16 @@
                                     <i class="fa fa-clipboard-list"></i>
                                     <span>Pesanan Saya</span></a>
                             </li>
-                            <li class="nav-item {{request()->is('user/pembayaran') || request()->is('penjual/pembayaran') ? 'active' : '' }}">
+                            {{-- <li class="nav-item {{request()->is('user/pembayaran') || request()->is('penjual/pembayaran') ? 'active' : '' }}">
                                 <a class="nav-link" href="{{route('penjual.pembayaran')}}">
                                     <i class="fa fa-credit-card"></i>
                                     <span>Pembayaran Saya</span></a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a class="nav-link" href="credits.html">
                                     <i class="fa fa-pen"></i>
-                                    <span>Ulasan Produk</span></a>
+                                    <span>Ulasan Produk</span>
+                                </a>
                             </li>
                             @if(Auth::guard('penjual')->user())
                                 <li class="menu-header">Menu Penjual</li>

@@ -6,6 +6,7 @@ use App\Http\Controllers\ProvinceController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UlasanController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\ProdukController;
 use App\Http\Controllers\WebController;
@@ -30,6 +31,7 @@ Route::prefix('auth/')->name('auth.')->group(function(){
     Route::get('logout', [AuthController::class,'logout'])->name('logout');
 });
 Route::prefix('user/')->name('user.')->group(function(){
+    Route::resource('ulasan', UlasanController::class);
     Route::get('ulos', [AccountController::class,'ulos'])->name('ulos');
     Route::get('akun', [AccountController::class,'akun'])->name('akun');
     Route::get('settings', [AccountController::class,'settings'])->name('settings');

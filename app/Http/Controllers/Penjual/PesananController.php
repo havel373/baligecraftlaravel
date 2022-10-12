@@ -89,12 +89,15 @@ class PesananController extends Controller
     public function update(Request $request, Orders $pesanan)
     {
         $pesanan->resi = $request->resi;
-        $pesanan->gambar_resi = $request->foto_resi;
+        if(request()->file('foto_resi')){
+            $file = request()->file('foto_resi')->store('foto_resi');
+            $pesanan->gambar_resi = $file;
+        }
         $pesanan->pesanan_status = $request->status;
         $pesanan->update();
         return response()->json([
             'alert'=>'success',
-            'message'=>'Pesanan Berhasil Di konfirmasi',
+            'message'=>'Pesanan Berhasil Di Ubah',
         ]);
     }
 

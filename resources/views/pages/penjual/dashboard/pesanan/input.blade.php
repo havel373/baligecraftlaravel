@@ -31,11 +31,11 @@
                                         <div class="form-group col-md-12 col-12">
                                             <label>Status</label>
                                             <select name="status" id="status" class="form-control">
-                                                <option value="{{$data->pesanan_status}} {{$data->pesanan_status == 0 ? 'selected' : ''}}">Sudah dibayar</option>
-                                                <option value="{{$data->pesanan_status}} {{$data->pesanan_status == 1 ? 'selected' : ''}}">Sudah di proses</option>
-                                                <option value="{{$data->pesanan_status}} {{$data->pesanan_status == 2 ? 'selected' : ''}}">Sudah dikirim</option>
-                                                <option value="{{$data->pesanan_status}} {{$data->pesanan_status == 3 ? 'selected' : ''}}">Sudah dikembalikan</option>
-                                                <option value="{{$data->pesanan_status}} {{$data->pesanan_status == 4 ? 'selected' : ''}}">dibatalkan</option>
+                                                <option value="0"{{$data->pesanan_status == 0 ? 'selected' : ''}}>Belum di proses</option>
+                                                <option value="1"{{$data->pesanan_status == 1 ? 'selected' : ''}}>Sedang di proses</option>
+                                                <option value="2"{{$data->pesanan_status == 2 ? 'selected' : ''}}>Sudah di proses</option>
+                                                <option value="3"{{$data->pesanan_status == 3 ? 'selected' : ''}}>Sudah dikirim</option>
+                                                <option value="4"{{$data->pesanan_status == 4 ? 'selected' : ''}}>Selesai</option>
                                             </select>
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@
         
                                 <div class="card-footer text-right">
                                     <button type="button" onclick="load_list(1);" class="btn btn-secondary">Kembali</button>
-                                    <button type="submit" id="kt_ecommerce_add_product_submit"  onclick="handle_upload('#kt_ecommerce_add_product_submit','#form_submit','{{route('penjual.produk.update',$data->id)}}','PATCH');" class="btn btn-primary">
+                                    <button type="submit" id="kt_ecommerce_add_product_submit"  onclick="handle_upload('#kt_ecommerce_add_product_submit','#form_submit','{{route('penjual.pesanan.update',$data->id)}}','PATCH');" class="btn btn-primary">
                                         <span class="indicator-label">Simpan</span>
                                     </button>
                                 </div>

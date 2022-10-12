@@ -25,7 +25,7 @@
                     <div class="alert alert-info">Kamu belum memilih metode pembayaran. Silakan klik tombol dibawah untuk memilih metode pembayaran yang diinginkan.</div>
                     <button id="pay-button" class="btn btn-sm btn-secondary">Pilih Metode Pembayaran</button>
                     <hr>
-                @elseif($data->order_status == "pending") { 
+                @elseif($data->order_status == "pending")
                     <div class="alert alert-info">Kamu belum melakukan pembayaran. Klik tombol dibawah untuk melihat panduan pembayaran. (batas maksimal pembayaran 1x24jam)</div>
                     <a href="{{$data->link_pay}}" target="_blank" class="btn btn-sm btn-secondary">Panduan Pembayaran</a>
                     <hr>
@@ -71,6 +71,8 @@
                                                         Sedang diproses
                                                     @elseif ($data->pesanan_status == 3) 
                                                         Sedang dikirim
+                                                    @elseif ($data->pesanan_status == 4)
+                                                         
                                                     @else
                                                         Selesai
                                                     @endif
