@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <h3>Alamat Penerima</h3>
-
+                            {{-- {{dd($get['rajaongkir']['results'])}} --}}
                             <div class="col-md-12 form-group p_star">
                                 <input type="hidden" class="form-control" id="biayaongkir" name="biayaongkir" value="">
                             </div>
@@ -80,7 +80,6 @@
                                     <button type="submit" class="button button-paypal" style="font-size: 16px; margin-top: 30px;">Buat Pesanan</button>
                                 </div>
                             </div>
-
 
                             <input type="hidden" name="id" id="" value="{{$id}}">
                         </div>

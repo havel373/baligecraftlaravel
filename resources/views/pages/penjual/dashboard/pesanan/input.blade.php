@@ -34,7 +34,7 @@
                                                 <option value="0"{{$data->pesanan_status == 0 ? 'selected' : ''}}>Belum di proses</option>
                                                 <option value="1"{{$data->pesanan_status == 1 ? 'selected' : ''}}>Sedang di proses</option>
                                                 <option value="2"{{$data->pesanan_status == 2 ? 'selected' : ''}}>Sudah di proses</option>
-                                                <option value="3"{{$data->pesanan_status == 3 ? 'selected' : ''}}>Sudah dikirim</option>
+                                                <option value="3"{{$data->pesanan_status == 3 ? 'selected' : ''}}>Sedang dikirim</option>
                                                 <option value="4"{{$data->pesanan_status == 4 ? 'selected' : ''}}>Selesai</option>
                                             </select>
                                         </div>

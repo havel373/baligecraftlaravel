@@ -26,6 +26,7 @@ Route::redirect('/', 'home', 301);
 Route::get('home', [WebController::class,'home'])->name('home');
 Route::prefix('auth/')->name('auth.')->group(function(){
     Route::get('index', [AuthController::class,'index'])->name('index');
+    Route::post('register', [AuthController::class,'register'])->name('register');
     Route::get('forgot', [AuthController::class,'forgot'])->name('forgot');
     Route::post('login', [AuthController::class,'login'])->name('login');
     Route::get('logout', [AuthController::class,'logout'])->name('logout');

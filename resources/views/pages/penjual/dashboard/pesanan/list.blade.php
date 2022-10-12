@@ -41,7 +41,7 @@
                     @elseif($order->pesanan_status == 2)
                         <td>Sudah diproses</td>
                     @elseif($order->pesanan_status == 3)
-                        <td>Sudah dikirim</td>
+                        <td>Sedang dikirim</td>
                     @elseif($order->pesanan_status == 4)
                         <td>Selesai</td>
                     @endif

@@ -67,13 +67,13 @@
                                                         Belum dibayar
                                                     @elseif ($data->order_status == 'settlement' && $data->pesanan_status == 0)
                                                         Menunggu konfirmasi
+                                                    @elseif ($data->pesanan_status == 1)
+                                                        Sudah dikonfirmasi
                                                     @elseif ($data->pesanan_status == 2)
                                                         Sedang diproses
                                                     @elseif ($data->pesanan_status == 3) 
                                                         Sedang dikirim
                                                     @elseif ($data->pesanan_status == 4)
-                                                         
-                                                    @else
                                                         Selesai
                                                     @endif
                                                 </b></td>

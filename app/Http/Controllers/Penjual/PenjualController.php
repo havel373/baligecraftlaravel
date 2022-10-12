@@ -16,6 +16,10 @@ class PenjualController extends Controller
     public function index(){
         return view('');
     }
+    
+    public function akun(){
+        return view('pages.dashboard.main');
+    }
 
     public function login(){
         return view('');

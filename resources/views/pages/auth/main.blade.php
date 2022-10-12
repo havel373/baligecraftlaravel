@@ -58,7 +58,7 @@
                     <label for="password_confirm" class="sr-only">Re-Type Password</label>
                     <input type="password" name="password_confirm" id="password_confirm" class="form-control" placeholder="Re-Type Password">
                   </div>
-                  <input name="register" id="register" class="btn btn-block login-btn mb-4" type="button" value="Register">
+                  <input name="register" id="register" class="btn btn-block login-btn mb-4" type="button" value="Register" onclick="handle_post('#register','#form_register','{{route('auth.register')}}');">
                 </form>
                 <p class="login-card-footer-text">Sudah Punya Akun?
                   <a href="javascript:;" onclick="auth_content('login_page');" class="text-reset" style="color:aliceblue">Login</a>

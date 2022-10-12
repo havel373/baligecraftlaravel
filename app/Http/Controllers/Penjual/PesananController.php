@@ -30,6 +30,7 @@ class PesananController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
         //
@@ -95,8 +96,13 @@ class PesananController extends Controller
         }
         if($request->status == 4){
             $pesanan->order_status = 'settlement';
+            $pesanan->pesanan_status = 4;
+        }elseif($request->status == 0){
+            $pesanan->pesanan_status = $request->status;
+            $pesanan->order_status = 'pending';
         }else{
             $pesanan->pesanan_status = $request->status;
+            $pesanan->order_status = 'settlement';
         }
         $pesanan->update();
         return response()->json([

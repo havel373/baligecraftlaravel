@@ -77,7 +77,13 @@
                                                     <b>Gagal</b>
                                                  @else 
                                                     <b>Belum dibayar</b>
-                                                 @endif
+                                                    @endif 
+                                            @elseif ($data->pesanan_status == 1) 
+                                                <b>Sudah dibayar</b>
+                                            @elseif ($data->pesanan_status == 2) 
+                                                <b>Sedang dikirim</b>
+                                            @elseif ($data->pesanan_status == 3) 
+                                                <b>Sedang dikirim</b>
                                             @endif
                                         </b>
                                     </td>
@@ -87,7 +93,7 @@
                                     @if($data->gambar_resi == null)
                                     <td><b class="statusField">-</td>
                                     @else
-                                        <td><b class="statusField">{{$data->image}}</td>
+                                        <td><b class="statusField">{{$data->resi}}</td>
                                     @endif
                                 </tr>
                             </table>

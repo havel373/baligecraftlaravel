@@ -7,6 +7,7 @@ use App\Models\Penjual;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -65,6 +66,56 @@ class AuthController extends Controller
 
     public function penjualIndex(){
         return view('pages.penjual.auth.main');
+    }
+
+    public function register(Request $request){
+        $validator = Validator::make($request->all(), [
+            'username' => 'required|max:255|unique:users,username',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|max:255',
+            'password_confirm' => 'required|same:password',
+        ]);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if ($errors->has('username')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('username'),
+                ]);
+            } else if ($errors->has('email')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('email'),
+                ]);
+            }else if ($errors->has('password')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('password'),
+                ]);
+            }else if ($errors->has('password_confirm')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('password_confirm'),
+                ]);
+            }else {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('password'),
+                ]);
+            }
+        }
+
+        $user = new User;
+        $user->username = $request->username;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Berhasil Daftar',
+            'callback' => route('auth.index'),
+        ]);
     }
 
     public function PenjualLogin(Request $request){
