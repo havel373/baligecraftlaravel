@@ -11,7 +11,7 @@
  Target Server Version : 50733
  File Encoding         : 65001
 
- Date: 12/10/2022 14:08:41
+ Date: 17/10/2022 15:07:49
 */
 
 SET NAMES utf8mb4;
@@ -224,12 +224,12 @@ CREATE TABLE `orders`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 164 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 169 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES (153, 1, '0', '', 3, 457, 'jne', '', 'PKE3092230970', NULL, 0, '2022-09-30 15:58:47', '39000', '269000', 3, 1, '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', '', NULL, NULL);
+INSERT INTO `orders` VALUES (153, 1, '23123122121123', 'foto_resi/50caK5XrswclY4ekBUWjulzuMLYROIHGCj98Xwgo.png', 3, 457, 'jne', '', 'PKE3092230970', 'pending', 0, '2022-09-30 15:58:47', '39000', '269000', 3, 1, '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', '', NULL, '2022-10-12 14:19:25');
 INSERT INTO `orders` VALUES (154, 1, '0', '', 6, 153, 'jne', '', 'JHE3092230156', '', 0, '2022-09-30 16:13:43', '36000', '269000', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
 INSERT INTO `orders` VALUES (155, 1, '0', '', 3, 455, 'pos', '', 'DNM3092230564', '', 0, '2022-09-30 16:34:32', '35500', '269000', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
 INSERT INTO `orders` VALUES (156, 1, '0', '', 7, 130, 'jne', '', 'ERO3092230904', 'settlement', 4, '2022-09-30 16:36:11', '95000', '269000', 3, 1, '', '{\"user\":{\"nama_lengkap\":\"Pahala Picauly Sagala\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"\"}', NULL, NULL);
@@ -240,6 +240,11 @@ INSERT INTO `orders` VALUES (160, 1, '0', '', 14, 167, 'jne', '', 'IXQ3092210085
 INSERT INTO `orders` VALUES (161, 7, '31273612721', 'foto_resi/06QgrIJDb5AcVLPzoNs2hdqtPS2A3sgg4wgTBc1o.png', 2, 27, 'jne', NULL, 'IZW12102299867', 'settlement', 4, '2022-10-12 12:01:34', '61000', '536000', 3, NULL, '{\"user\":{\"nama_lengkap\":\"Orang\",\"notelp\":\"081269791233\",\"alamat\":\"jalanan\"},\"note\":\"tes\"}', NULL, '2022-10-12 12:01:34', '2022-10-12 12:03:30');
 INSERT INTO `orders` VALUES (162, 7, 'E23212131221', 'foto_resi/a45KWf7vhc9koOczq2i5CmEEL3E1IR6JNtDnq4zS.png', 3, 457, 'jne', NULL, 'KVN12102245167', 'settlement', 4, '2022-10-12 13:17:06', '63000', '1158000', 3, NULL, '{\"user\":{\"nama_lengkap\":\"Orang\",\"notelp\":\"081269791233\",\"alamat\":\"jalanan\"},\"note\":\"tes\"}', NULL, '2022-10-12 13:17:06', '2022-10-12 13:19:00');
 INSERT INTO `orders` VALUES (163, 7, '01239129292929', 'foto_resi/R8Qcu0MttRkBfU5ZDe6z86CDQDiJMEdXFkZJY1UT.png', 5, 39, 'jne', NULL, 'SVY12102235147', 'settlement', 4, '2022-10-12 13:55:11', '46000', '126000', 2, NULL, '{\"user\":{\"nama_lengkap\":\"Orang\",\"notelp\":\"081269791233\",\"alamat\":\"jalanan\"},\"note\":\"antar\"}', NULL, '2022-10-12 13:55:11', '2022-10-12 13:58:55');
+INSERT INTO `orders` VALUES (164, 11, NULL, NULL, 3, 106, 'jne', NULL, 'CFA131022162211', 'pending', 0, '2022-10-13 13:16:47', '39000', '1089000', 3, NULL, '{\"user\":{\"nama_lengkap\":\"Orang\",\"notelp\":\"081269791233\",\"alamat\":\"jalanan\"},\"note\":\"tess\"}', NULL, '2022-10-13 13:16:47', '2022-10-13 13:16:47');
+INSERT INTO `orders` VALUES (165, 11, NULL, NULL, 10, 344, 'jne', NULL, 'JQW131022534511', 'pending', 0, '2022-10-13 13:32:23', '50000', '360000', 2, NULL, '{\"user\":{\"nama_lengkap\":\"Orang\",\"notelp\":\"081269791233\",\"alamat\":\"jalanan\"},\"note\":\"oke\"}', NULL, '2022-10-13 13:32:23', '2022-10-13 13:32:23');
+INSERT INTO `orders` VALUES (166, 7, '23123122121123', 'foto_resi/dunfhuvTEgV0PYx1rKKU58uSK8jk77kWMlzKkf0A.png', 3, 456, 'tiki', NULL, 'YVD13102297757', 'settlement', 3, '2022-10-13 15:52:47', '27000', '377000', 2, NULL, '{\"user\":{\"nama_lengkap\":\"Orang\",\"notelp\":\"081269791233\",\"alamat\":\"jalanan\"},\"note\":\"tes\"}', NULL, '2022-10-13 15:52:47', '2022-10-13 16:02:05');
+INSERT INTO `orders` VALUES (167, 1, '23123122121123', 'foto_resi/1enIjtllx3SIdkJI08AgHQCyOFz1O9UegJC6sizL.png', 3, 456, 'jne', NULL, 'UFD17102250221', 'settlement', 3, '2022-10-17 13:29:35', '63000', '383000', 2, NULL, '{\"user\":{\"nama_lengkap\":\"Pakhomios Havel\",\"notelp\":\"081269791233\",\"alamat\":\"Jalan Aster 2 No 165\"},\"note\":\"tes\"}', NULL, '2022-10-17 13:29:35', '2022-10-17 13:32:53');
+INSERT INTO `orders` VALUES (168, 8, '1231232121', 'foto_resi/T4n88MhDhmCUdaE0a6iBbe0QTIRy1ljHRme4IeZN.jpg', 3, 457, 'jne', NULL, 'CFE17102214488', 'settlement', 3, '2022-10-17 14:47:00', '39000', '789000', 1, NULL, '{\"user\":{\"nama_lengkap\":\"Havel\",\"notelp\":\"081283183281\",\"alamat\":\"jakarta\"},\"note\":\"oke\"}', NULL, '2022-10-17 14:47:00', '2022-10-17 14:47:58');
 
 -- ----------------------------
 -- Table structure for orders_item
@@ -254,7 +259,7 @@ CREATE TABLE `orders_item`  (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 100 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 110 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of orders_item
@@ -332,6 +337,16 @@ INSERT INTO `orders_item` VALUES (96, 162, 24, '6', '420000', '2022-10-12 13:17:
 INSERT INTO `orders_item` VALUES (97, 162, 29, '7', '525000', '2022-10-12 00:00:00', '2022-10-12 00:00:00');
 INSERT INTO `orders_item` VALUES (98, 163, 27, '1', '50000', '2022-10-12 13:55:11', '2022-10-12 13:55:11');
 INSERT INTO `orders_item` VALUES (99, 163, 30, '3', '30000', '2022-10-12 00:00:00', '2022-10-12 13:55:11');
+INSERT INTO `orders_item` VALUES (100, 164, 24, '14', '980000', '2022-10-13 13:16:47', '2022-10-13 13:16:47');
+INSERT INTO `orders_item` VALUES (101, 164, 27, '1', '50000', '2022-10-13 13:16:47', '2022-10-13 13:16:47');
+INSERT INTO `orders_item` VALUES (102, 164, 30, '2', '20000', '2022-10-13 00:00:00', '2022-10-13 00:00:00');
+INSERT INTO `orders_item` VALUES (103, 165, 24, '3', '210000', '2022-10-13 13:32:23', '2022-10-13 13:32:23');
+INSERT INTO `orders_item` VALUES (104, 165, 26, '2', '100000', '2022-10-13 00:00:00', '2022-10-13 13:32:23');
+INSERT INTO `orders_item` VALUES (105, 166, 28, '5', '300000', '2022-10-13 15:52:47', '2022-10-13 15:52:47');
+INSERT INTO `orders_item` VALUES (106, 166, 25, '1', '50000', '2022-10-13 00:00:00', '2022-10-13 15:52:47');
+INSERT INTO `orders_item` VALUES (107, 167, 28, '3', '180000', '2022-10-17 13:29:35', '2022-10-17 13:29:35');
+INSERT INTO `orders_item` VALUES (108, 167, 24, '2', '140000', '2022-10-17 00:00:00', '2022-10-17 13:29:35');
+INSERT INTO `orders_item` VALUES (109, 168, 34, '3', '750000', '2022-10-17 00:00:00', '2022-10-17 00:00:00');
 
 -- ----------------------------
 -- Table structure for orders_ulos
@@ -356,6 +371,26 @@ INSERT INTO `orders_ulos` VALUES (7, '', 1, NULL, NULL);
 INSERT INTO `orders_ulos` VALUES (8, '', 2, NULL, NULL);
 INSERT INTO `orders_ulos` VALUES (9, '', 1, NULL, NULL);
 INSERT INTO `orders_ulos` VALUES (10, '', 1, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for password_resets
+-- ----------------------------
+DROP TABLE IF EXISTS `password_resets`;
+CREATE TABLE `password_resets`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `created_at` date NULL DEFAULT NULL,
+  `updated_at` date NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `password_resets_email`(`email`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of password_resets
+-- ----------------------------
+INSERT INTO `password_resets` VALUES (1, 'email@gmail.com', '67pGlqoL0C3TV9vzBl8A4OrQ8CzSTJBUOcsLCVLYdJndrz5Pt3hcj64O8XSTP2zM', '2022-10-13', NULL);
+INSERT INTO `password_resets` VALUES (2, 'email@gmail.com', 'tkANAle6lWBFmZtckWCNUGfAke3b14rLae1YS6Xd8G8WfpqIgzIwKOeNoWnNnP2Z', '2022-10-13', NULL);
 
 -- ----------------------------
 -- Table structure for payments
@@ -458,19 +493,20 @@ CREATE TABLE `produk`  (
   `produk_date` date NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 35 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of produk
 -- ----------------------------
-INSERT INTO `produk` VALUES (24, 'Asbak Kayu -1', '', '', '70000', 'produk/3hzRXoSfu689JsvxekcsBFpKfW4TpzOJiFimCLYk.jpg', '44', '5', 'Cokelat', 1, 1, 1, '2022-07-15', 12);
-INSERT INTO `produk` VALUES (25, 'Ulos Sadum', '', '', '50000', 'produk/dYJF4WAu1OFZSupQMnoXdca7EcWpGDMlPAOOoMVN.png', '2', '', '', 3, 0, 1, '2022-07-15', 12);
-INSERT INTO `produk` VALUES (26, 'Sling Bag', '', '', '50000', 'produk/2ws5IOD85AoUpc76n52lzfYg2adJowbYHGwVcnv5.png', '7', '', '', 2, 1, 1, '2022-07-15', 12);
-INSERT INTO `produk` VALUES (27, 'Beach Hat', '', '', '50000', 'produk/i7bkHV7zjNXO80D37ckQNQyuqBrzZiCvM8PS6AVW.png', '2', '', '', 2, 0, 1, '2022-07-15', 12);
-INSERT INTO `produk` VALUES (28, 'Ulos Ragihotang', '', '', '60000', 'produk/vDsUseBgW5ZzjOHofNKSfqrvNtsjULe6CTok0i1V.png', '15', '', '', 3, 0, 1, '2022-07-26', 12);
+INSERT INTO `produk` VALUES (24, 'Asbak Kayu -1', '', '', '70000', 'produk/3hzRXoSfu689JsvxekcsBFpKfW4TpzOJiFimCLYk.jpg', '25', '5', 'Cokelat', 1, 1, 1, '2022-07-15', 12);
+INSERT INTO `produk` VALUES (25, 'Ulos Sadum', '', '', '50000', 'produk/dYJF4WAu1OFZSupQMnoXdca7EcWpGDMlPAOOoMVN.png', '1', '', '', 3, 0, 1, '2022-07-15', 12);
+INSERT INTO `produk` VALUES (26, 'Sling Bag', '', '', '50000', 'produk/2ws5IOD85AoUpc76n52lzfYg2adJowbYHGwVcnv5.png', '5', '', '', 2, 1, 1, '2022-07-15', 12);
+INSERT INTO `produk` VALUES (27, 'Beach Hat', '', '', '50000', 'produk/i7bkHV7zjNXO80D37ckQNQyuqBrzZiCvM8PS6AVW.png', '1', '', '', 2, 0, 1, '2022-07-15', 12);
+INSERT INTO `produk` VALUES (28, 'Ulos Ragihotang', '', '', '60000', 'produk/vDsUseBgW5ZzjOHofNKSfqrvNtsjULe6CTok0i1V.png', '7', '', '', 3, 0, 1, '2022-07-26', 12);
 INSERT INTO `produk` VALUES (29, 'Jam Tangan Kayu', '', '', '75000', 'produk/3YC1DigsN5p5Uqc4B1pvwbOPu5ML3KDxlw68VYG7.png', '0', '2', 'Cokelat muda', 1, 1, 1, '2022-07-26', 12);
-INSERT INTO `produk` VALUES (30, 'Gantungan Kunci', '', '', '10000', 'produk/ULRyuZ2OeMJYdEyotaNic9t4mqUuaNmr5Qsvz7dG.png', '17', '', '', 1, 0, 1, '2022-07-26', 12);
+INSERT INTO `produk` VALUES (30, 'Gantungan Kunci', '', '', '10000', 'produk/ULRyuZ2OeMJYdEyotaNic9t4mqUuaNmr5Qsvz7dG.png', '15', '', '', 1, 0, 1, '2022-07-26', 12);
 INSERT INTO `produk` VALUES (32, 'Ulos Sirara', '-', '-', '20000', 'produk/OrbsiHJ1Ng22eNhxtmRd7EJGxIKesP1KZLiSJ6Ed.png', '0', '', '', 3, 1, 1, '2022-07-27', 12);
+INSERT INTO `produk` VALUES (34, 'android', 'oke', 'oke', '250000', 'produk/pnihNYhTNgUcfOkAUE2n2leCOpojNo4hq9VA1eNn.png', '17', '200', 'hitam', 1, 1, 1, '2022-10-17', 1);
 
 -- ----------------------------
 -- Table structure for provinsi
@@ -604,12 +640,19 @@ CREATE TABLE `users`  (
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `users_username_unique`(`username`) USING BTREE,
   UNIQUE INDEX `users_email_unique`(`email`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'sagala123', 'Pakhomios Havel', 'Medan', '1999-11-12', 'pahalasagala772@gmail.com', '$2y$10$hoR5JpWq51qQjIhgEAha6uZxUotJJSrOggn6MTqPxPop8CKugYFGS', 'index3.jpg', 'Jalan Aster 2 No 165', '20224', '-', '081269791233', '1', NULL, '2022-10-06 22:45:18');
+INSERT INTO `users` VALUES (1, 'sagala123', 'Pakhomios Havel', 'Medan', '1999-11-12', 'pahala.picauly123@gmail.com', '$2y$10$hoR5JpWq51qQjIhgEAha6uZxUotJJSrOggn6MTqPxPop8CKugYFGS', 'index3.jpg', 'Jalan Aster 2 No 165', '20224', '-', '081269791233', '1', NULL, '2022-10-06 22:45:18');
 INSERT INTO `users` VALUES (7, 'sagala12345', 'Orang', 'Jkt', '2000-09-09', 'pahala.picauly67@gmail.com', '$2y$10$hoR5JpWq51qQjIhgEAha6uZxUotJJSrOggn6MTqPxPop8CKugYFGS', 'default.png', 'jalanan', '0232', 'orang', '081269791233', '1', NULL, '2022-10-06 23:12:26');
+INSERT INTO `users` VALUES (8, 'if320011', 'Havel', 'Jakarta', '2002-10-29', 'pakhomioshavel@gmail.com', '$2y$10$Dfo5hgcx.qSmu669f9pnceIusRLlMI5OSdkejGfeKa4iKwl2zOvl6', 'user/a6GW8UwJxqKqqyNZNo1JjTdvaQt7MLqhFcQfsKSB.png', 'jakarta', '15412', 'oke', '081283183281', '1', '2022-10-12 14:35:17', '2022-10-17 14:41:01');
+INSERT INTO `users` VALUES (11, 'if3200112', 'Orang', 'Jjakarta', '2000-10-29', 'email123@gmail.com', '$2y$10$hoR5JpWq51qQjIhgEAha6uZxUotJJSrOggn6MTqPxPop8CKugYFGS', 'user/vsB5JJVDbKCRnj2sFE3bL5K9naFVZjHGPMEZRhuL.png', 'jalanan', '5123020', 'oke', '081269791233', '1', '2022-10-12 14:39:16', '2022-10-13 13:15:16');
+INSERT INTO `users` VALUES (12, 'if32001122', '', '', '0000-00-00', 'email1232@gmail.com', '$2y$10$4OdRf8zwgSvWUsDG3gAUb.BgXVN9t7SyWJfSCRSJDvd6gagxkpWB6', '', '', '', '', '', '1', '2022-10-12 14:39:50', '2022-10-12 14:39:50');
+INSERT INTO `users` VALUES (13, 'testing', '', '', '0000-00-00', 'tenant1@gmail.com', '$2y$10$NWpYl8blMMUlHEY6S8QtduqErXtFyIdxeIu1LBqqhy31mKcvkUJ8a', '', '', '', '', '', '1', '2022-10-12 14:58:12', '2022-10-12 14:58:12');
+INSERT INTO `users` VALUES (14, 'daftar', '', '', '0000-00-00', 'daftar@gmail.com', '$2y$10$//8I6pk/T6EfrdvCrTTv8uZj1xDMV9Bre5Wg4Vd/LgjWEhHdGlfmC', '', '', '', '', '', '1', '2022-10-13 08:27:40', '2022-10-13 08:27:40');
+INSERT INTO `users` VALUES (15, 'user123', '', '', '0000-00-00', 'user123@gmail.com', '$2y$10$5JeymCdAh.lHUyR1soQv0eVrTG6vVOyAivradZSDiQldtoF5UHSz.', '', '', '', '', '', '1', '2022-10-17 13:21:22', '2022-10-17 13:21:22');
+INSERT INTO `users` VALUES (16, 'tes12345', '', '', '0000-00-00', 'test12345@gmail.com', '$2y$10$CLsrQskfydzO2PIrBb.9J.phviO7IJWwCocGNDsMiXyZyBiG7B.02', '', '', '', '', '', '1', '2022-10-17 14:39:14', '2022-10-17 14:39:14');
 
 SET FOREIGN_KEY_CHECKS = 1;
