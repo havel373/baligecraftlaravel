@@ -80,7 +80,7 @@
                                         </tr>
                                         <tr>
                                             <td>Nomor Resi</td>
-                                            <td>#{{$data->resi}}</b></td>
+                                            <td>{{$data->resi}}</b></td>
                                         </tr>
                                     </table>
                                 </div>

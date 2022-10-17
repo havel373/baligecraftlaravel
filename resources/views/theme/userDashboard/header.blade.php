@@ -40,7 +40,6 @@
                                     </a>
                                     <ul class="dropdown-menu menu">
                                         <li class="nav-item"><a class="nav-link" href="{{route('penjual.akun')}}"><span class="lnr lnr-user"> Akun Saya</span> </a></li>
-                                        <li class="nav-item"><a class="nav-link" href="{{route('penjual.settings')}}"><span class="lnr lnr-cog"> Settings</span></a></li>
                                         <li class="nav-item"><a class="nav-link" href="{{route('penjual.auth.logout')}}"><span class="lnr lnr-exit"> Logout</span></a></li>
                                     </ul>
                                 </li>
@@ -60,7 +59,6 @@
                                     </a>
                                     <ul class="dropdown-menu menu">
                                         <li class="nav-item"><a class="nav-link" href="{{route('user.akun')}}"><span class="lnr lnr-user"> Akun Saya</span> </a></li>
-                                        <li class="nav-item"><a class="nav-link" href="{{route('user.settings')}}"><span class="lnr lnr-cog"> Settings</span></a></li>
                                         @if(Auth::guard('penjual')->user())
                                         <li class="nav-item"><a class="nav-link" href="{{route('auth.logout')}}"><span class="lnr lnr-exit"> Logout</span></a></li>
                                         @else
