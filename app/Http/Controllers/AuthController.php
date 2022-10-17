@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ResetMail;
 use App\Models\Admin;
 use App\Models\Penjual;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -58,10 +63,83 @@ class AuthController extends Controller
         }
     }
 
+    public function reset($token){
+        return view('pages.auth.reset', compact('token'));
+    }
+
     public function logout(){
         $user = Auth::user();
         Auth::logout($user);
         return redirect()->route('home');
+    }
+
+    public function forgot(Request $request){
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|exists:users',
+        ]);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if ($errors->has('email')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('email'),
+                ]);
+            }
+        }
+
+        $token = Str::random(64);
+
+        DB::table('password_resets')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+        Mail::to($request->email)->send(new ResetMail($token));
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Mohon cek email untuk reset password anda',
+            'callback' => route('auth.index'),
+        ]);
+    }
+    
+    public function do_reset(Request $request){
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|min:8|max:255',
+            'cpassword' => 'required|min:8|max:255|same:password',
+        ]);
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            if ($errors->has('email')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('email'),
+                ]);
+            }else if ($errors->has('cpassword')) {
+                return response()->json([
+                    'alert' => 'error',
+                    'message' => $errors->first('cpassword'),
+                ]);
+            }
+        }
+
+        $updatePassword = DB::table('password_resets')
+        ->where(['token' => $request->token])
+        ->first();
+        if (!$updatePassword) {
+            return response()->json([
+                'alert' => 'error',
+                'message' => 'Invalid token!',
+            ]);
+        }
+        $user = User::where('email', $updatePassword->email)
+            ->update(['password' => Hash::make($request->password)]);
+
+        DB::table('password_resets')->where(['email' => $updatePassword->email])->delete();
+        return response()->json([
+            'alert' => 'success',
+            'message' => 'Password berhasil di ubah',
+            'callback' => route('auth.index'),
+        ]);
     }
 
     public function penjualIndex(){

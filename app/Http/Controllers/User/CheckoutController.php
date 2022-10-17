@@ -61,10 +61,6 @@ class CheckoutController extends Controller
         $order->total_items = $carts->count();
         $delivery_data = ['user' => ['nama_lengkap' => Auth::user()->nama_lengkap, 'notelp' => Auth::user()->notelp, 'alamat' => $request->alamat], 'note' => $request->note];
         $order->delivery_data = json_encode($delivery_data);
-        // $order->payment_method = $request->total_input;
-        // $order->payment_method = $request->total_input;
-        // $order->delivery_data = $request->total_input;
-        // $order->link_pay = $request->total_input;
         $order->order_number = $this->create_order_number();
         $order->save();
         // menampilkan semua barang yang ada di cart
@@ -110,14 +106,20 @@ class CheckoutController extends Controller
         }
         // die;
         \Cart::clear();
-        $message = "Halo, nama saya " . Auth::user()->name . " saya membeli produk dengan nomor order : " . $order->order_number . " dengan total harga : " . $order->total_price . " dengan kurir : " . $order->courier . " dengan ongkir : " . $order->ongkir ;
+        // $count = OrderItem::where('order_id',$order->id)->count();
+        // $orderItem = OrderItem::get();
+        // $temp = [];
+        // for($z = 0; $z < $count; $z++){
+        //     $temp[] = $orderItem[$z]->produk->nama;
+        // }
+        // $res = $temp;
+        $message = "Halo, nama saya " . Auth::user()->nama_lengkap . ", saya membeli produk dengan nomor order : " . $order->order_number . " dengan total harga : " . $order->total_price . " dengan kurir : " . $order->courier . " dengan ongkir : " . $order->ongkir;
         // make return redirect to whatsapp
         return redirect('https://api.whatsapp.com/send?phone=6281362926803&text=' . $message)->with('success', 'Order Berhasil Ditambahkan');
     }
 
     public function create_order_number(){    
         //Random 3 letter . Date . Month . Year . Quantity . User ID . Coupon Used . Numeric
-
         $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
         $randomString = '';

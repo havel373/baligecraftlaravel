@@ -28,6 +28,8 @@
                             <td>Belum dibayar</td>
                         @elseif($order->pesanan_status == 0 && $order->order_status == 'settlement')
                             <td>Menunggu konfirmasi</td>
+                        @elseif($order->pesanan_status == 1)
+                            <td>Sudah dikonfirmasi</td>
                         @elseif($order->pesanan_status == 2)
                             <td>Sedang diproses</td>
                         @elseif ($order->pesanan_status == 3)

@@ -48,7 +48,7 @@ class AccountController extends Controller
             'tempat_lahir' => 'required|max:150',
             'tanggal_lahir' => 'required',
             'email' => 'required|max:150|unique:users,email,' .$profile->id,
-            'foto' => 'max:64',
+            'foto' => 'max:6000',
             'alamat' => 'required',
             'kodepos' => 'required|digits_between:4,8',
             'bio' => 'required',

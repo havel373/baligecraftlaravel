@@ -27,9 +27,9 @@ $("#form_login").on('keydown', 'input', function(event) {
     }
 });
 $("#email").focus();
-function handle_post(tombol,form,url){
+function handle_post(tombol,form,url,title){
     $(tombol).prop("disabled", true);
-    $(tombol).attr("data-kt-indicator", "on");
+    $(tombol).html("Mohon Tunggu");
     $.post(url, $(form).serialize(), function(result) {
         if (result.alert == "success") {
             Swal.fire({ text: result.message, icon: "success", buttonsStyling: !1, confirmButtonText: "Ok, Mengerti!", customClass: { confirmButton: "btn btn-primary" } }).then(function() {
@@ -40,6 +40,10 @@ function handle_post(tombol,form,url){
                 }
             });
         }else{
+            setTimeout(function () {
+                $(tombol).prop("disabled", false);
+                $(tombol).html(title);
+            }, 1000);
             Swal.fire({ text: result.message, icon: "error", buttonsStyling: !1, confirmButtonText: "Ok, Mengerti!", customClass: { confirmButton: "btn btn-primary" } });
         }
         $(tombol).prop("disabled", false);

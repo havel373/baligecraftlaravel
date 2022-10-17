@@ -20,11 +20,11 @@
                     <label for="password" class="sr-only">Password</label>
                     <input type="password" name="password" id="password" class="form-control" placeholder="***********" onkeyup="s()">
                   </div>
-                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" onclick="handle_post('#login','#form_login','{{route('auth.login')}}');" value="Login">
+                  <button name="login" id="login" class="btn btn-block login-btn mb-4" type="button" onclick="handle_post('#login','#form_login','{{route('auth.login')}}','Login');" value="">Login</button>
                 </form>
                 <a href="javascript:;" onclick="auth_content('forgot_page');" class="forgot-password-link">Forgot password?</a>
-                <p class="login-card-footer-text">Belum Punya akun?
-                  <a href="javascript:;" onclick="auth_content('register_page');" class="text-reset" style="color:aliceblue">Daftar</a>
+                <p class="login-card-footer-text">
+                  <a href="javascript:;" onclick="auth_content('register_page');" class="text-reset" style="color:aliceblue">Belum Punya akun? Daftar</a>
                 </p>
               </div>
             </div>
@@ -58,10 +58,10 @@
                     <label for="password_confirm" class="sr-only">Re-Type Password</label>
                     <input type="password" name="password_confirm" id="password_confirm" class="form-control" placeholder="Re-Type Password">
                   </div>
-                  <input name="register" id="register" class="btn btn-block login-btn mb-4" type="button" value="Register" onclick="handle_post('#register','#form_register','{{route('auth.register')}}');">
+                  <button name="register" id="register" class="btn btn-block login-btn mb-4" type="button" value="" onclick="handle_post('#register','#form_register','{{route('auth.register')}}','Register');">Register</button>
                 </form>
-                <p class="login-card-footer-text">Sudah Punya Akun?
-                  <a href="javascript:;" onclick="auth_content('login_page');" class="text-reset" style="color:aliceblue">Login</a>
+                <p class="login-card-footer-text">
+                  <a href="javascript:;" onclick="auth_content('login_page');" class="text-reset" style="color:aliceblue">Sudah Punya Akun? Login</a>
                 </p>
               </div>
             </div>
@@ -77,16 +77,18 @@
             </div>
             <div class="col-md-7">
               <div class="card-body">
-                <p class="login-card-description">Lupa Password</p>
+                <a href="javascript:;" onclick="auth_content('forgot_page');">
+                  <p class="login-card-description">Lupa Password</p>
+                </a>
                 <form id="form_forgot">
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
                     <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
                   </div>
-                  <input name="forgot" id="forgot" class="btn btn-block login-btn mb-4" type="button" value="Reset Password">
+                  <button name="forgot" id="forgot" class="btn btn-block login-btn mb-4" type="button" value="" onclick="handle_post('#forgot','#form_forgot','{{route('auth.forgot')}}','Reset Password');">Reset Password</button>
                 </form>
-                <p class="login-card-footer-text">Kembali ke
-                  <a href="javascript:;" onclick="auth_content('login_page');" class="text-reset" style="color:aliceblue">Login</a>
+                <p class="login-card-footer-text">
+                  <a href="javascript:;" onclick="auth_content('login_page');" class="text-reset" style="color:aliceblue">Kembali ke Login</a>
                 </p>
               </div>
             </div>
