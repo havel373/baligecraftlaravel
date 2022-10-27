@@ -19,12 +19,19 @@
                                 <div class="col-12 col-md-12 col-lg-12">
                                     <div class="card profile-widget">
                                         <div class="profile-widget-header">
-                                            {{-- {{dd(Auth::guard('penjual')->user()->image)}} --}}
-                                            <img alt="image" src="{{'storage/'.Auth::guard('penjual')->user()->foto}}" class="rounded-circle profile-widget-picture" style="width:100px; height:100px;">
-    
+                                            @php
+                                                $pesanan = \App\Models\Orders::where('user_id',Auth::user() ? Auth::user()->id : Auth::guard('penjual')->user()->id)->count();
+                                            @endphp
+                                            @if(Auth::guard('penjual')->user()->id != null && Auth::user() == null)
+                                                <img alt="image" src="{{asset('storage/'.Auth::guard('penjual')->user()->foto)}}" class="rounded-circle profile-widget-picture" style="width:100px; height:100px;">
+                                            @elseif(Auth::user()->id != null && Auth::guard('penjual')->user() == null )
+                                                <img alt="image" src="{{asset('storage/'.Auth::user()->foto)}}" class="rounded-circle profile-widget-picture" style="width:100px; height:100px;">
+                                            @else
+                                                <img alt="image" src="{{asset('storage/images/avatar/avatar-1.png')}}" class="rounded-circle profile-widget-picture" style="width:100px; height:100px;">
+                                            @endif
                                             <div class=" profile-widget-items">
                                                 <div class="profile-widget-item">
-                                                    <div class="profile-widget-item-label">Total Pesanan : 180
+                                                    <div class="profile-widget-item-label">Total Pesanan : {{$pesanan}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -61,10 +68,12 @@
                                     <div class="card profile-widget">
                                         <div class="profile-widget-header">
                                             <img alt="image" src="{{asset('storage/'.Auth::user()->foto)}}" class="rounded-circle profile-widget-picture" style="width:100px; height:100px;">
-    
+                                            @php
+                                                $pesanan = \App\Models\Orders::where('user_id',Auth::user() ? Auth::user()->id : Auth::guard('penjual')->user()->id)->count();
+                                            @endphp
                                             <div class=" profile-widget-items">
                                                 <div class="profile-widget-item">
-                                                    <div class="profile-widget-item-label">Total Pesanan : 180
+                                                    <div class="profile-widget-item-label">Total Pesanan : {{$pesanan}}
                                                     </div>
                                                 </div>
                                             </div>

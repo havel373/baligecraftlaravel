@@ -191,7 +191,7 @@
                                 <a href="{{route('cart.list')}}" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="fa fa-shopping-cart"></span>
                                     @php
-                                       $total_items = \Cart::getContent()->count();
+                                       $total_items = \App\Models\Cart::where('user_id',Auth::user()->id)->count();
                                     @endphp
                                     <span class="badge badge-bg-1">{{$total_items}}</span>
                                 </a>
@@ -211,7 +211,7 @@
                                     <a href="('produk/cart')" class="dropdown-toggle" data-toggle="dropdown">
                                         <span class="fa fa-shopping-cart"></span>
                                         @php
-                                        $total_items = \Cart::getContent()->count();
+                                        $total_items = \App\Models\Cart::where('user_id',Auth::guard('penjual')->user()->id)->count();
                                         @endphp
                                         <span class="badge badge-bg-1">{{$total_items}}</span>
                                     </a>
@@ -260,7 +260,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu menu">
-                                    <li class="nav-item"><a class="nav-link" href="{{route('user.ulos')}}">Custom Ulos</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{route('ulos.index')}}">Custom Ulos</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#">Buka Toko</span></a>
 
                                 </ul>

@@ -8,6 +8,7 @@ use App\Models\Orders;
 use App\Models\Produk;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PesananController extends Controller
 {
@@ -18,8 +19,17 @@ class PesananController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->ajax() ){
-            $orders = Orders::paginate(10);
+        if ($request->ajax()) {
+
+            // subquery
+            $orders = Orders::select('orders.*')
+                ->join('users', 'users.id', '=', 'orders.user_id')
+                ->join('orders_item', 'orders_item.order_id', '=', 'orders.id')
+                ->join('produk', 'produk.id', '=', 'orders_item.produk_id')
+                ->where('produk.user_id', Auth::guard('penjual')->user()->id)
+                ->groupBy('orders.id')
+                ->orderBy('orders.created_at', 'desc')
+                ->paginate(10);
             return view('pages.penjual.dashboard.pesanan.list', compact('orders'));
         }
         return view('pages.penjual.dashboard.pesanan.main');
@@ -56,11 +66,11 @@ class PesananController extends Controller
     public function show(Orders $pesanan)
     {
         $items = OrderItem::where('order_id', $pesanan->id)
-        ->groupBy('produk_id')
-        ->get();    
-        $delivery_data = Orders::where('id',$pesanan->id)
-        ->pluck('delivery_data')
-        ->first();
+            ->groupBy('produk_id')
+            ->get();
+        $delivery_data = Orders::where('id', $pesanan->id)
+            ->pluck('delivery_data')
+            ->first();
         return view('pages.penjual.dashboard.pesanan.show', ['data' => $pesanan, 'items' => $items, 'delivery_data' => json_decode($delivery_data)]);
     }
 
@@ -73,10 +83,10 @@ class PesananController extends Controller
     public function edit(Orders $pesanan)
     {
         $items = OrderItem::where('order_id', $pesanan->id)
-        ->groupBy('produk_id')
-        ->get();    
-        $delivery_data = Orders::where('id',$pesanan->id)
-        ->pluck('delivery_data');
+            ->groupBy('produk_id')
+            ->get();
+        $delivery_data = Orders::where('id', $pesanan->id)
+            ->pluck('delivery_data');
         return view('pages.penjual.dashboard.pesanan.input', ['data' => $pesanan, 'items' => $items, 'delivery_data' => json_decode($delivery_data)]);
     }
 
@@ -90,24 +100,24 @@ class PesananController extends Controller
     public function update(Request $request, Orders $pesanan)
     {
         $pesanan->resi = $request->resi;
-        if(request()->file('foto_resi')){
+        if (request()->file('foto_resi')) {
             $file = request()->file('foto_resi')->store('foto_resi');
             $pesanan->gambar_resi = $file;
         }
-        if($request->status == 4){
+        if ($request->status == 4) {
             $pesanan->order_status = 'settlement';
             $pesanan->pesanan_status = 4;
-        }elseif($request->status == 0){
+        } elseif ($request->status == 0) {
             $pesanan->pesanan_status = $request->status;
             $pesanan->order_status = 'pending';
-        }else{
+        } else {
             $pesanan->pesanan_status = $request->status;
             $pesanan->order_status = 'settlement';
         }
         $pesanan->update();
         return response()->json([
-            'alert'=>'success',
-            'message'=>'Pesanan Berhasil Di Ubah',
+            'alert' => 'success',
+            'message' => 'Pesanan Berhasil Di Ubah',
         ]);
     }
 

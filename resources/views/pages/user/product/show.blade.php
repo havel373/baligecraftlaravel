@@ -33,10 +33,13 @@
                                 @csrf
                                 <input type="number" class="buyfield" name="qty" value="1" min="1" />
                                 <input type="hidden" class="buyfield" name="produk_id" value="{{ $produk->id}}" />
-                                <input type="hidden" class="buyfield" name="name" value="{{ $produk->nama}}" />
-                                <input type="hidden" class="buyfield" name="image" value="{{ $produk->image }}" />
-                                <input type="hidden" class="buyfield" name="price" value="{{ $produk->harga}}" />
-                                <input type="submit" class="button primary-btn" name="submit" value="Buy Now" />
+                                <input type="hidden" class="buyfield" name="penjual" value="{{ $produk->user_id}}" />
+                                @auth
+                                    <input type="submit" class="button primary-btn" name="submit" value="Buy Now" />
+                                @endauth
+                                @guest
+                                    <a class="button primary-btn" name="submit" href="{{ route('auth.index')}}">Buy Now</a>
+                                @endguest
                             </form>
                         </div>
                         <div class="card_area d-flex align-items-center">
@@ -186,7 +189,7 @@
             2.3.0
         </div>
     </footer>
-    @section('cutsom_js')
+    @section('custom_js')
     <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script>
         function highlightStar(obj, id) {

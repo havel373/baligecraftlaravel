@@ -10,8 +10,10 @@
                         </a>
                         <div class="navbar-header">
                             <div class="logo-navigasi">
+                                <a href="{{route('home')}}">
                                 <img src="{{asset('assets/images/Logo/logo1.png')}}" alt="" class="img1">
                                 <img src="{{asset('assets/images/Logo/logo.png')}}" alt="" class="img2">
+                                </a>
                             </div>
                         </div>
                         <ul class="navbar-nav">
@@ -45,10 +47,10 @@
                                 </li>
                             @else
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown" style="margin-left: 170px;" data-toggle="dropdown">
+                                    <a href="{{route('cart.list')}}" style="margin-left: 170px;" >
                                         <span class="lnr lnr-cart"></span>
                                         @php
-                                            $total_items = \Cart::getContent()->count();
+                                            $total_items = \App\Models\Cart::where('user_id',Auth::user()->id)->count();
                                         @endphp
                                         <span class="badge badge-bg-1">{{$total_items}}</span>
                                     </a>

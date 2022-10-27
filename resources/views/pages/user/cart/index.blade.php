@@ -3,15 +3,16 @@
     <section class="cart_area">
         <div class="container">
             <div class="cart_inner">
-                @if(session('error'))
+                @if (session('error'))
                     <p class="text-danger text-center">{!! session('error') !!}</p>
                 @endif
                 @php
                     $totalHarga = 0;
                     $grandtotal = 0;
+                    $totalBarang = 0;
                 @endphp
                 <div class="table-responsive">
-                    @if(count($carts) > 0)
+                    @if (count($carts) > 0)
                         <table class="table">
                             <thead>
                                 <tr>
@@ -24,45 +25,59 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($carts as $item)
+                                @foreach ($carts as $item)
                                     <tr>
                                         <td>
+                                            <div class="font-bold">
+                                                <img style="width: 18px" src="{{ asset('img/OS-Badge-80.png') }}"
+                                                    alt="">
+                                                <label style="margin: 0" for="check_all_store" class="">Penjual :
+                                                    {{ \Illuminate\Support\Str::limit($item->penjual->nama, 20) }}</label>
+                                                <input type="hidden" value="{{ $item->penjual_id }}" name="penjual_id"
+                                                    id="">
+                                            </div>
                                             <div class="media">
                                                 <div class="media-body">
-                                                    <p><?php echo $item['name'] ?> </p>
+                                                    <p>{{ $item->produk->nama }}</p>
                                                 </div>
                                             </div>
                                         </td>
                                         <td>
-                                            <img class="img-responsive" src="{{$item['attributes']['image']}}" alt="">
+                                            <img class="img-responsive" src="{{ $item->produk->image }}" alt="">
                                         </td>
                                         <td>
-                                            <h7>Rp.{{number_format($item['price'])}}</h7>
+                                            <h7>Rp.{{ number_format($item->produk->harga) }}</h7>
                                         </td>
                                         @php
-                                            $totalHarga += $item['price'];
-                                            $grandtotal += $item['price'] * $item['quantity'];
+                                            $totalBarang += $item->qty;
+                                            $totalHarga += $item->produk->harga;
+                                            $grandtotal +=  $item->total_harga ? $item->total_harga : $item->produk->harga * $item->qty
                                         @endphp
                                         <td>
-                                            <form action="{{route('cart.update')}}" method="post">
-                                            @csrf
+                                            <form action="{{ route('cart.update') }}" method="post">
+                                                @csrf
                                                 @method('PATCH')
                                                 <div class="product_count">
-                                                    <input type="number" name="quantity" value="{{$item['quantity']}}" min="1"/>
-                                                    <input type="hidden" name="id" value="{{$item['id']}}"/>
+                                                    <input type="number" name="kuantitas" value="{{ $item->qty }}"
+                                                        min="1" />
+                                                    <input type="hidden" name="produk_id"
+                                                        value="{{ $item->product_id }}" />
+                                                    <input type="hidden" name="id" value="{{ $item->id }}" />
                                                 </div>
-                                                <input type="submit" name="submit" value="Update" class="btn btn-primary" style="border-color: #e99c2e;" />
+                                                <input type="submit" name="submit" value="Update"
+                                                    class="btn btn-primary" style="border-color: #e99c2e;" />
                                             </form>
                                         </td>
                                         <td>
-                                            <h7>Rp.{{number_format($item['price'] * $item['quantity'])}}</h7>
+                                            <h7>Rp.{{ number_format( $item->total_harga ? $item->total_harga : $item->produk->harga * $item->qty) }}</h7>
                                         </td>
                                         <td>
-                                            <form action="{{route('cart.remove')}}" method="post">
+                                            <form action="{{ route('cart.remove') }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <input type="hidden" name="id" value="{{$item['id']}}" />
-                                                <input type="submit" name="submit" value="X" class="btn btn-danger" />
+                                                <input type="hidden" name="id" value="{{ $item->id }}" />
+                                                <input type="submit" name="submit" value="X"
+                                                    class="btn btn-danger" />
                                             </form>
                                         </td>
                                     </tr>
@@ -74,7 +89,15 @@
                                         <h5>Total Item</h5>
                                     </td>
                                     <td align="right" colspan="4">
-                                        <h7>{{number_format($carts->count())}}</h7>
+                                        <h7>{{ $carts->count() }}</h7>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" colspan="4">
+                                        <h5>Jumlah Barang</h5>
+                                    </td>
+                                    <td align="right" colspan="4">
+                                        <h7>{{ $totalBarang }}</h7>
                                     </td>
                                 </tr>
                                 <tr>
@@ -82,17 +105,22 @@
                                         <h5>Total Harga</h5>
                                     </td>
                                     <td align="right" colspan="4">
-                                        <h7>Rp. {{number_format($grandtotal)}}</h7>
+                                        <h7>Rp. {{ number_format($grandtotal) }}</h7>
                                     </td>
                                 </tr>
                                 <tr class="out_button_area">
                                     <td align="right" colspan="6">
                                         <div class="checkout_btn_inner d-flex align-items-center">
-                                            <a class="gray_btn" href="{{route('home')}}">Lanjut Belanja</a>
-                                            @if(Auth::user())
-                                                <a class="primary-btn ml-2" href="{{route('user.checkout',$item->id)}}">Langsung ke Checkout</button>
-                                            @else
-                                            <a class="primary-btn ml-2" href="{{route('auth.index')}}">Langsung ke Checkout</button>
+                                            <a class="gray_btn" href="{{ route('home') }}">Lanjut Belanja</a>
+                                            @if (Auth::user())
+                                                <a class="primary-btn ml-2"
+                                                    href="{{ route('user.checkout', $item->id) }}">Langsung
+                                                    ke
+                                                    Checkout</button>
+                                                @else
+                                                    <a class="primary-btn ml-2"
+                                                        href="{{ route('auth.index') }}">Langsung ke
+                                                        Checkout</button>
                                             @endif
                                         </div>
                                     </td>
@@ -102,7 +130,9 @@
                     @else
                         <div class="row">
                             <div class="col-md-12 ftco-animate">
-                                <div class="alert alert-info">Keranjang Anda Kosong.<br><a href="{{route('home')}}">Jelajahi Produk Kami</a> dan mulailah berbelanja!</div>
+                                <div class="alert alert-info">Keranjang Anda Kosong.<br><a
+                                        href="{{ route('home') }}">Jelajahi Produk Kami</a> dan mulailah berbelanja!
+                                </div>
                             </div>
                         </div>
                     @endif
@@ -120,5 +150,4 @@
             2.3.0
         </div>
     </footer>
-    </div>
 </x-User-Layout>

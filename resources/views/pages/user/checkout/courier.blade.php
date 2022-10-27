@@ -107,7 +107,7 @@ if ($err) {
     </script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#pilih_ongkir').on('click', function() {
+            $('#pilih_ongkir').on('change', function() {
                 var id = $(this).val();
                 $.ajax({
                     url: "{{route('provinsi.get_biaya')}}",

@@ -13,30 +13,35 @@ use Illuminate\Support\Str;
 
 class PenjualController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('');
     }
-    
-    public function akun(){
+
+    public function akun()
+    {
         return view('pages.dashboard.main');
     }
 
-    public function login(){
+    public function login()
+    {
         return view('');
     }
 
-    public function pembayaran(){
+    public function pembayaran()
+    {
         $orders = new Orders;
         $payments = $orders->get_all_payments();
         return view('pages.dashboard.pembayaran', compact('payments'));
     }
 
-    public function editProfile(Request $request, Penjual $profile){
+    public function editProfile(Request $request, Penjual $profile)
+    {
         $validator = Validator::make($request->all(), [
             'nama_lengkap' => 'required|max:128',
             'tempat_lahir' => 'required|max:150',
             'tanggal_lahir' => 'required',
-            'email' => 'required|max:150|unique:penjual,email,' .$profile->id,
+            'email' => 'required|max:150|unique:penjual,email,' . $profile->id,
             'foto' => 'max:1000',
             'alamat' => 'required',
             'kodepos' => 'required|digits_between:4,8',
@@ -92,7 +97,7 @@ class PenjualController extends Controller
                 ]);
             }
         }
-        if($request->password){
+        if ($request->password) {
             $validator = Validator::make($request->all(), [
                 'password' => 'required|min:8|max:150',
             ]);

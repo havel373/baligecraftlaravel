@@ -13,4 +13,22 @@
     <link href="{{asset('assets/css/bootsnav.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/style1.css')}}" rel="stylesheet">
     <link href="{{asset('assets/user/css/tambahan1.css')}}" rel="stylesheet">
+    <style>
+    .main-footer {
+        padding: 20px 30px 20px 280px;
+        margin-top: 40px;
+        color: #98a6ad;
+        border-top: 1px solid #e3eaef;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .main-footer .footer-left {
+        float: left;
+    }
+
+    .main-footer .footer-right {
+        float: right;
+    }
+    </style>
 </head>

@@ -16,38 +16,44 @@ use Illuminate\Support\Facades\Validator;
 
 class AccountController extends Controller
 {
-    public function akun(){
+    public function akun()
+    {
         return view('pages.dashboard.main');
     }
-    
-    public function settings(){
+
+    public function settings()
+    {
         return view('');
     }
 
-    public function ulos(){
-        $list_ulos = Produk::select('produk.*','kategori.id','kategori.kategori_nama')
-        ->join('kategori','kategori.id','=','produk.kategori')
-        ->where('kategori.kategori_nama','Ulos')
-        ->where('produk.status', 1)
-        ->get();
-        return view('pages.user.ulos',compact('list_ulos'));
+    public function ulos()
+    {
+        $list_ulos = Produk::select('produk.*')
+            ->join('kategori', 'kategori.id', '=', 'produk.kategori')
+            ->where('kategori.kategori_nama', 'Ulos')
+            ->where('produk.status', 1)
+            ->get();
+        // dd($list_ulos);
+        return view('pages.user.ulos', compact('list_ulos'));
     }
 
-    public function profile(Request $request){
-        if($request->ajax() ){
+    public function profile(Request $request)
+    {
+        if ($request->ajax()) {
             $user = Auth::user();
-            return view('pages.dashboard.profile_edit',compact('user'));
+            return view('pages.dashboard.profile_edit', compact('user'));
         }
         return view('pages.dashboard.profile');
     }
-    
-    public function editProfile(Request $request, User $profile){
+
+    public function editProfile(Request $request, User $profile)
+    {
         $validator = Validator::make($request->all(), [
-            'username' => 'required|max:150|unique:users,username,' .$profile->id,
+            'username' => 'required|max:150|unique:users,username,' . $profile->id,
             'nama_lengkap' => 'required|max:128',
             'tempat_lahir' => 'required|max:150',
             'tanggal_lahir' => 'required',
-            'email' => 'required|max:150|unique:users,email,' .$profile->id,
+            'email' => 'required|max:150|unique:users,email,' . $profile->id,
             'foto' => 'max:6000',
             'alamat' => 'required',
             'kodepos' => 'required|digits_between:4,8',
@@ -61,7 +67,7 @@ class AccountController extends Controller
                     'alert' => 'error',
                     'message' => $errors->first('username'),
                 ]);
-            }else if ($errors->has('nama_lengkap')) {
+            } else if ($errors->has('nama_lengkap')) {
                 return response()->json([
                     'alert' => 'error',
                     'message' => $errors->first('nama_lengkap'),
@@ -108,7 +114,7 @@ class AccountController extends Controller
                 ]);
             }
         }
-        if($request->password){
+        if ($request->password) {
             $validator = Validator::make($request->all(), [
                 'password' => 'required|min:8|max:150',
             ]);
@@ -145,27 +151,30 @@ class AccountController extends Controller
         ]);
     }
 
-    public function order(Request $request){
-        if($request->ajax() ){
+    public function order(Request $request)
+    {
+        if ($request->ajax()) {
             $init = new Orders;
             $orders = $init->get_all_orders();
             return view('pages.dashboard.order_list', compact('orders'));
         }
         return view('pages.dashboard.order');
     }
-    
-    public function pembayaran(){
+
+    public function pembayaran()
+    {
         $init = new Orders;
         $flash = session()->flash('payment_flash');
         $payments =  $init->get_all_payments();
-        return view('pages.dashboard.pembayaran',compact('payments','flash'));
+        return view('pages.dashboard.pembayaran', compact('payments', 'flash'));
     }
 
-    public function confirmpayment(){
-        
+    public function confirmpayment()
+    {
     }
 
-    public function order_view($id){
+    public function order_view($id)
+    {
         $orders = new Orders;
         $orderItem = new OrderItem;
         $data = $orders->order_data($id);
@@ -176,8 +185,8 @@ class AccountController extends Controller
         $order['data'] = $data;
         $order['produk'] = $data;
         $order['items'] = $items;
-        $items = OrderItem::where('order_id',$id)->get();
+        $items = OrderItem::where('order_id', $id)->get();
         $delivery_data = json_decode($data->delivery_data);
-        return view('pages.dashboard.detailOrder', compact('data','items','delivery_data'));
+        return view('pages.dashboard.detailOrder', compact('data', 'items', 'delivery_data'));
     }
 }

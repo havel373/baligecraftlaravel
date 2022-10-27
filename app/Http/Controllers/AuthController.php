@@ -17,11 +17,13 @@ use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         return view('pages.auth.main');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:255',
             'password' => 'required',
@@ -41,39 +43,42 @@ class AuthController extends Controller
                 ]);
             }
         }
-        $check = User::where("email", "=", $request->email)->first();
+        $check = User::where("email", $request->email)->first();
         if ($check) {
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-                    return response()->json([
-                        'alert' => 'success',
-                        'message' => 'Welcome back ' . Auth::user()->username,
-                        'callback' => route('home'), 
-                    ]);
-            } else{
+                return response()->json([
+                    'alert' => 'success',
+                    'message' => 'Welcome back ' . Auth::user()->username,
+                    'callback' => route('home'),
+                ]);
+            } else {
                 return response()->json([
                     'alert' => 'error',
-                    'message' => 'password salah', 
+                    'message' => 'password salah',
                 ]);
             }
-        } else{
+        } else {
             return response()->json([
-            'alert' => 'error',
-            'message' => 'Email tidak ditemukan.',
+                'alert' => 'error',
+                'message' => 'Email tidak ditemukan.',
             ]);
         }
     }
 
-    public function reset($token){
+    public function reset($token)
+    {
         return view('pages.auth.reset', compact('token'));
     }
 
-    public function logout(){
+    public function logout()
+    {
         $user = Auth::user();
         Auth::logout($user);
         return redirect()->route('home');
     }
 
-    public function forgot(Request $request){
+    public function forgot(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users',
         ]);
@@ -101,8 +106,9 @@ class AuthController extends Controller
             'callback' => route('auth.index'),
         ]);
     }
-    
-    public function do_reset(Request $request){
+
+    public function do_reset(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'password' => 'required|min:8|max:255',
             'cpassword' => 'required|min:8|max:255|same:password',
@@ -114,7 +120,7 @@ class AuthController extends Controller
                     'alert' => 'error',
                     'message' => $errors->first('email'),
                 ]);
-            }else if ($errors->has('cpassword')) {
+            } else if ($errors->has('cpassword')) {
                 return response()->json([
                     'alert' => 'error',
                     'message' => $errors->first('cpassword'),
@@ -123,8 +129,8 @@ class AuthController extends Controller
         }
 
         $updatePassword = DB::table('password_resets')
-        ->where(['token' => $request->token])
-        ->first();
+            ->where(['token' => $request->token])
+            ->first();
         if (!$updatePassword) {
             return response()->json([
                 'alert' => 'error',
@@ -142,11 +148,13 @@ class AuthController extends Controller
         ]);
     }
 
-    public function penjualIndex(){
+    public function penjualIndex()
+    {
         return view('pages.penjual.auth.main');
     }
 
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'username' => 'required|max:255|unique:users,username',
             'email' => 'required|email|max:255|unique:users,email',
@@ -166,17 +174,17 @@ class AuthController extends Controller
                     'alert' => 'error',
                     'message' => $errors->first('email'),
                 ]);
-            }else if ($errors->has('password')) {
+            } else if ($errors->has('password')) {
                 return response()->json([
                     'alert' => 'error',
                     'message' => $errors->first('password'),
                 ]);
-            }else if ($errors->has('password_confirm')) {
+            } else if ($errors->has('password_confirm')) {
                 return response()->json([
                     'alert' => 'error',
                     'message' => $errors->first('password_confirm'),
                 ]);
-            }else {
+            } else {
                 return response()->json([
                     'alert' => 'error',
                     'message' => $errors->first('password'),
@@ -196,7 +204,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function PenjualLogin(Request $request){
+    public function PenjualLogin(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:255',
             'password' => 'required',
@@ -219,18 +228,18 @@ class AuthController extends Controller
         $check = Penjual::where("email", "=", $request->email)->first();
         if ($check) {
             if (Auth::guard('penjual')->attempt(['email' => $request->email, 'password' => $request->password])) {
-                    return response()->json([
-                        'alert' => 'success',
-                        'message' => 'Welcome back ' . Auth::guard('penjual')->user()->nama,
-                        'callback' => route('home'), 
-                    ]);
-            } else{
+                return response()->json([
+                    'alert' => 'success',
+                    'message' => 'Welcome back ' . Auth::guard('penjual')->user()->nama,
+                    'callback' => route('home'),
+                ]);
+            } else {
                 return response()->json([
                     'alert' => 'error',
-                    'message' => 'password salah', 
+                    'message' => 'password salah',
                 ]);
             }
-        } else{
+        } else {
             return response()->json([
                 'alert' => 'error',
                 'message' => 'Email tidak ditemukan.',
@@ -238,17 +247,20 @@ class AuthController extends Controller
         }
     }
 
-    public function penjualLogout(){
+    public function penjualLogout()
+    {
         $user = Auth::guard('penjual')->user();
         Auth::guard('penjual')->logout($user);
         return redirect()->route('penjual.login');
     }
-    
-    public function adminIndex(){
+
+    public function adminIndex()
+    {
         return view('pages.admin.auth.main');
     }
 
-    public function adminLogin(Request $request){
+    public function adminLogin(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'email' => 'required|email|max:255',
             'password' => 'required',
@@ -271,26 +283,27 @@ class AuthController extends Controller
         $check = Admin::where("email", "=", $request->email)->first();
         if ($check) {
             if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
-                    return response()->json([
-                        'alert' => 'success',
-                        'message' => 'Welcome back ' . Auth::guard('admin')->user()->nama,
-                        'callback' => route('admin.index'), 
-                    ]);
-            } else{
+                return response()->json([
+                    'alert' => 'success',
+                    'message' => 'Welcome back ' . Auth::guard('admin')->user()->nama,
+                    'callback' => route('admin.index'),
+                ]);
+            } else {
                 return response()->json([
                     'alert' => 'error',
-                    'message' => 'password salah', 
+                    'message' => 'password salah',
                 ]);
             }
-        } else{
+        } else {
             return response()->json([
-            'alert' => 'error',
-            'message' => 'Email tidak ditemukan.',
+                'alert' => 'error',
+                'message' => 'Email tidak ditemukan.',
             ]);
         }
     }
 
-    public function adminLogout(){
+    public function adminLogout()
+    {
         $user = Auth::guard('admin')->user();
         Auth::guard('admin')->logout($user);
         return redirect()->route('login');

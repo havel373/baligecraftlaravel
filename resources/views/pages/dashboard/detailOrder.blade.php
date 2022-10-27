@@ -8,7 +8,6 @@
                     <div class="breadcrumb-item">Profile</div>
                 </div>
             </div>
-
                 @if($data->courier == "cod")
                     @if($data->pesanan_status != "4")
                     <h2 class="title">COD (Cash of Delivery)</h2>
@@ -107,7 +106,7 @@
                                                     <h5 class="mb-0">{{$item->produk->nama}}</h5>
                                                 </td>
                                                 <td><b>{{$item->order_qty}}</td>
-                                                <td>Rp {{number_format($item->order_price * $item->order_qty)}}</td>
+                                                <td>Rp {{number_format($item->produk->harga * $item->order_qty)}}</td>
                                             </tr>
                                         @endforeach
                                     </table>

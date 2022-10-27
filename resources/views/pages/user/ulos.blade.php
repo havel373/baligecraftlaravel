@@ -31,8 +31,10 @@
                     </a>
                     <div class="navbar-header">
                         <div class="logo-navigasi">
+                            <a href="{{route('home')}}">
                             <img src="{{asset('assets/images/Logo/logo1.png')}}" alt="" class="img1">
                             <img src="{{asset('assets/images/Logo/logo.png')}}" alt="" class="img2">
+                            </a>
                         </div>
                     </div>
                     <ul class="navbar-nav">
@@ -120,7 +122,7 @@
                                     </div>
 
                                 </div>
-                                <h4><a href="{{route('produk.show',$list_ulos->id)}}">{{$list_ulos->nama}}</a></h4>
+                                <h4><a href="{{route('ulos.show',$list_ulos->id)}}">{{$list_ulos->nama}}</a></h4>
                                 <p class="arrival-product-price">Rp.{{number_format($list_ulos->harga)}}</p>
                             </div>
 
@@ -256,7 +258,6 @@
             2.3.0
         </div>
     </footer>
-    </div>
 
 </body>
 
